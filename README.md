@@ -1,10 +1,11 @@
 # rico-qt
 
-rico-qt is a QT based applications that allows simple and fast creation of rico clusters.
+rico-qt is a QT based applications that allows simple and fast creation of rico clusters. It uses a simple (example: [rico-qt-save.json](resources/rico-qt-save.json) ) JSON representation to store documents. It also generates small efficient PDF output (example: [rico-qt-print.pdf](resources/rico-qt-print.pdf) ) you can easily use to print, present and postprocess.
 
 ## Screenshots
 
-![Screenshot 1](resources/rico-qt.png)
+![Main Application Window](resources/rico-qt.png)
+![Main Menu](resources/rico-qt-2.png)
 
 ## Installation
 
