@@ -51,8 +51,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 This project uses the following tools/libraries:
 
-* Qt Open Source Edition [QT5.15](https://qt.io)
-** please also see: [license details QT](https://doc.qt.io/qt-5/licenses-used-in-qt.html)
+* Qt Open Source Edition [QT5.15](https://qt.io) please also see: [license details QT](https://doc.qt.io/qt-5/licenses-used-in-qt.html)
 * Microsoft Visual Studio 2019 [MSVS2019](https://visualstudio.microsoft.com/)
 * Apple Xcode [Xcode](https://developer.apple.com/xcode/)
 * Fedora 31 [Fed31](https://getfedora.org)
