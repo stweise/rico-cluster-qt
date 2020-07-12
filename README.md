@@ -11,6 +11,16 @@ rico-qt is a QT based applications that allows simple and fast creation of rico 
 
 ## Installation
 
+### Installation on Mac OS X
+
+Open the released DMG file for Mac OS X and simple copy the included Application in your "Applications" folder.
+
+### Installation on Windows
+
+Unzip the relased 7z file using an unpacker. If you do not have one, please go to [z-zip.org](https://www.7-zip.org/) and download and install it on your Windows. If you get any error with regard to a missing MSVCP140.dll please also install the vcredist_x64.exe which is already in the folder. This is taken from [here](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
+
+### Installation from source
+
 Either compile it using the QT open source license or download one of the releases.
 
 In QT Creator:
@@ -36,3 +46,12 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 2020 Steffen Weise
+
+## Notice
+
+This project uses the following tools/libraries:
+
+* Qt Open Source Edition [QT5.15](https://qt.io)
+* Microsoft Visual Studio 2019 [MSVS2019](https://visualstudio.microsoft.com/)
+* Apple Xcode [Xcode](https://developer.apple.com/xcode/)
+* Fedora 31 [Fed31](https://getfedora.org)
