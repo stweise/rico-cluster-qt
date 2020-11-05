@@ -20,6 +20,7 @@ GraphicsScene::GraphicsScene(QObject *parent)
     :QGraphicsScene::QGraphicsScene(parent)
 {
     //qDebug() << "FOo";
+		this->setItemIndexMethod(QGraphicsScene::ItemIndexMethod::NoIndex);
 }
 GraphicsScene::~GraphicsScene()
 {
@@ -236,7 +237,7 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
         {
             for(int i=0;i<selList.size();i++)
             {
-                qDebug()<< i << selList.size();
+                qDebug()<<"i: "<< i <<" size: "<< selList.size();
                 QGraphicsItem * item = selList[i];
                 int itemtype = item->type();
                 //If it is a node
@@ -251,7 +252,7 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                         if( nodeID  == (*it)->nodeA->ID || nodeID  == (*it)->nodeB->ID )
                         {
                             Edge* edge = (*it);
-                            this->removeItem(edge);
+                            //this->removeItem(edge);
                             // erase() invalidates it, using returned safe it
                             it = edges.erase(it);
                             delete edge;
@@ -268,7 +269,7 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                         if( nodeID  == (*nit)->ID )
                         {
                             Node* node = (*nit);
-                            this->removeItem(node);
+                            //this->removeItem(node);
                             // erase() invalidates it, using returned safe it
                             nit = nodes.erase(nit);
                             delete node;
@@ -278,7 +279,6 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                             ++nit;
                         }
                     }
-                    update();
                 }
                 //If it is an edge
                 else if (itemtype==65538)
@@ -290,15 +290,15 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                         if( ((Edge*) item)->ID == (*it)->ID)
                         {
                             edges.erase(it);
-                            this->removeItem(item);
+                            //this->removeItem(item);
                             delete item;
                             break;
                         }
                     }
-                    update();
                 }
             }
         }
+        update();
     }
     if (keyEvent->key() == Qt::Key_E)
     {
@@ -316,6 +316,7 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                 this->clearSelection();
             }
         }
+				update();
     }
     QGraphicsScene::keyPressEvent(keyEvent);
 }
