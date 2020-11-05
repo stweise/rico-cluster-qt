@@ -23,7 +23,10 @@ Unzip the relased 7z file using an unpacker. If you do not have one, please go t
 
 Clone this repo or download the source code file for a release
 
+On Fedora 31 & 32
+
 ```bash
+sudo yum install qt5-devel cmake
 cd rico-qt
 mkdir build
 cd build
