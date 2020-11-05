@@ -23,14 +23,6 @@
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOn</enum>
       </property>
-      <property name="sceneRect">
-       <rectf>
-        <x>-1000.000000000000000</x>
-        <y>-1000.000000000000000</y>
-        <width>2000.000000000000000</width>
-        <height>2000.000000000000000</height>
-       </rectf>
-      </property>
      </widget>
     </item>
    </layout>
