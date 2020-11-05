@@ -179,10 +179,10 @@ void GraphicsScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * mouseEvent)
         //If it is a node
         if (itemtype==65537)
         {
-            QString text = QInputDialog::getText(nullptr, tr("Modify node label"), tr("Node label:"), QLineEdit::Normal, "", &ok);
+            Node* node = (Node*) undercursor;
+            QString text = QInputDialog::getText(nullptr, tr("Modify node label"), tr("Node label:"), QLineEdit::Normal, node->nodelabel, &ok);
             if (ok && !text.isEmpty())
             {
-                Node* node = (Node*) undercursor;
                 node->nodelabel=text;
                 update();
             }
