@@ -49,13 +49,14 @@ Project > Open Project > Import the CMakeLists.txt > Build
 After starting the application use the following input commands:
 
 * double-click on empty space: create a new node
-* double-click on a node: update node label
+* double-click on a node: update node label (old text is default for new label)
 * single-click on a node: selects node
 * (Windows & Linux) CTRL-click on a node or edge: toggles selection on node or edge
 * (Mac) COMMAND-click on a node or edge: toggles selection on node or edge
 * "e"-key + two selected nodes: nodes are connected by an edge 
 * DELETE/BACKSPACE: deletes edge/node under current selection
 * drag and drop is supported (extendable by selection)
+* drawing area (canvas) is extending, when objects are moved towards the edge
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
