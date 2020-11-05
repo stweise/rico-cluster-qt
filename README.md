@@ -19,7 +19,21 @@ Open the released DMG file for Mac OS X and simple copy the included Application
 
 Unzip the relased 7z file using an unpacker. If you do not have one, please go to [z-zip.org](https://www.7-zip.org/) and download and install it on your Windows. If you get any error with regard to a missing MSVCP140.dll please also install the vcredist_x64.exe which is already in the folder. This is taken from [here](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
 
-### Installation from source
+### Installation from source via distribution packages for QT
+
+Clone this repo or download the source code file for a release
+
+```bash
+cd rico-qt
+mkdir build
+cd build
+cmake ..
+make
+./rico-qt
+```
+
+
+### Installation from source via QT Creator
 
 Either compile it using the QT open source license or download one of the releases.
 
