@@ -28,6 +28,24 @@ GraphicsScene::~GraphicsScene()
 
 void GraphicsScene::save()
 {
+    if(this->saveFileName.isEmpty())
+    {
+        this->saveAs();
+    }
+    else
+    {
+        QFile saveFile(this->saveFileName);
+        if (!saveFile.open(QIODevice::WriteOnly)) {
+            qWarning("Couldn't open save file.");
+        }
+        QJsonObject sceneObject;
+        writeJsonFromScene(sceneObject);
+        saveFile.write(QJsonDocument(sceneObject).toJson());
+        saveFile.close();
+    }
+}
+void GraphicsScene::saveAs()
+{
     QString filter = "rico-qt cluster (*.json)";
     QDir examplePath = QDir::home();
     QString absolutePath = examplePath.absoluteFilePath("save.json");
@@ -36,14 +54,16 @@ void GraphicsScene::save()
     {
         QFile saveFile(savefilename);
         if (!saveFile.open(QIODevice::WriteOnly)) {
-            qWarning("Couldn't open save2 file.");
+            qWarning("Couldn't open save file.");
         }
         QJsonObject sceneObject;
         writeJsonFromScene(sceneObject);
         saveFile.write(QJsonDocument(sceneObject).toJson());
         saveFile.close();
+        this->saveFileName = savefilename;
     }
 }
+
 void GraphicsScene::load()
 {
     /* TODO */
@@ -128,6 +148,7 @@ void GraphicsScene::load()
                 }
             }
             loadFile.close();
+            this->saveFileName = loadfilename;
         }
     }
     else

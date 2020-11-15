@@ -31,3 +31,8 @@ void MainWindow::on_actionPrint_triggered()
 {
     scene->print();
 }
+
+void MainWindow::on_actionSave_as_triggered()
+{
+    scene->saveAs();
+}

@@ -29,12 +29,14 @@ public:
     virtual void keyPressEvent(QKeyEvent *keyEvent);
     virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
     void save();
+    void saveAs();
     void load();
     void print();
     void writeJsonFromScene(QJsonObject &json);
 private:
     std::vector<Edge*> edges;
     std::vector<Node*> nodes;
+    QString saveFileName;
 };
 
 #endif // GRAPHICSSCENE_H

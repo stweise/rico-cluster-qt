@@ -27,6 +27,8 @@ private slots:
 
     void on_actionPrint_triggered();
 
+    void on_actionSave_as_triggered();
+
 private:
     Ui::MainWindow *ui;
     GraphicsScene *scene;
