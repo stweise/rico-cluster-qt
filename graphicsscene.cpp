@@ -46,7 +46,7 @@ void GraphicsScene::save()
 }
 void GraphicsScene::saveAs()
 {
-    QString filter = "rico-qt cluster (*.json)";
+    QString filter = FILEDESC;
     QDir examplePath = QDir::home();
     QString absolutePath = examplePath.absoluteFilePath("save.json");
     QString savefilename = QFileDialog::getSaveFileName(nullptr, tr("Save File"), absolutePath , filter, &filter);
@@ -71,7 +71,7 @@ void GraphicsScene::load()
     /* this means the current cluster is empty*/
     if ( edges.size()==0 && nodes.size() == 0)
     {
-        QString loadfilename = QFileDialog::getOpenFileName(nullptr, tr("Open File"), QDir::homePath(), tr("qt-rico cluster (*.json)"));
+        QString loadfilename = QFileDialog::getOpenFileName(nullptr, tr("Open File"), QDir::homePath(), tr(FILEDESC));
         //only do something when a valid file name was returned
         if (!loadfilename.isEmpty())
         {

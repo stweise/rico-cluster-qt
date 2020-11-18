@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 cmake_minimum_required(VERSION 3.5)
 
-project(rico-qt LANGUAGES CXX)
+project(rico-cluster-qt LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -21,7 +21,7 @@ IF (APPLE)
 SET(GUI_TYPE MACOSX_BUNDLE)
 ENDIF (APPLE)
 
-add_executable(rico-qt ${GUI_TYPE}
+add_executable(rico-cluster-qt ${GUI_TYPE}
     main.cpp
     mainwindow.cpp
     mainwindow.h
@@ -34,4 +34,4 @@ add_executable(rico-qt ${GUI_TYPE}
     edge.cpp
     )
 
-target_link_libraries(rico-qt PRIVATE Qt5::Widgets)
+target_link_libraries(rico-cluster-qt PRIVATE Qt5::Widgets)

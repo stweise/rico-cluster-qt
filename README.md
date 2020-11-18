@@ -1,13 +1,13 @@
-# rico-qt
+# rico-cluster-qt
 
-rico-qt is a QT based applications that allows simple and fast creation of rico clusters [1,2]. It uses a simple (example: [rico-qt-save.json](resources/rico-qt-save.json) ) JSON representation to store documents. It also generates small efficient PDF output (example: [rico-qt-print.pdf](resources/rico-qt-print.pdf) ) you can easily use to print, present and postprocess.
+rico-cluster-qt is a QT based applications that allows simple and fast creation of rico clusters [1,2]. It uses a simple (example: [rico-cluster-qt-save.json](resources/rico-cluster-qt-save.json) ) JSON representation to store documents. It also generates small efficient PDF output (example: [rico-cluster-qt-print.pdf](resources/rico-cluster-qt-print.pdf) ) you can easily use to print, present and postprocess.
 
 [1] https://de.wikipedia.org/wiki/Cluster_(Kreatives_Schreiben)
 [2] https://www.lifehack.org/articles/featured/rico-clusters-an-alternative-to-mind-mapping.html
 ## Screenshots
 
-![Main Application Window](resources/rico-qt.png)
-![Main Menu](resources/rico-qt-2.png)
+![Main Application Window](resources/rico-cluster-qt.png)
+![Main Menu](resources/rico-cluster-qt-2.png)
 
 ## Installation
 
@@ -27,12 +27,12 @@ On Fedora 31 & 32
 
 ```bash
 sudo yum install qt5-devel cmake
-cd rico-qt
+cd rico-cluster-qt
 mkdir build
 cd build
 cmake ..
 make
-./rico-qt
+./rico-cluster-qt
 ```
 
 

@@ -16,6 +16,10 @@
 #include "node.h"
 #include <vector>
 
+#ifndef FILEDESC
+#define FILEDESC "rico-cluster-qt cluster (*.json)"
+#endif
+
 class GraphicsScene : public QGraphicsScene
 {
     Q_OBJECT
