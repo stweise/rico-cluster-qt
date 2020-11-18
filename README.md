@@ -61,6 +61,11 @@ After starting the application use the following input commands:
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+## Project info
+
+* next features [here](NEXT_FEATURES.md)
+* changelog [here](CHANGELOG.md)
+
 ## License
 [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 2020 Steffen Weise
