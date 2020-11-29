@@ -2,68 +2,68 @@
     "edges": [
         {
             "ID": 0,
-            "nodeA-ID": 3,
-            "nodeB-ID": 2
-        },
-        {
-            "ID": 1,
-            "nodeA-ID": 3,
+            "nodeA-ID": 2,
             "nodeB-ID": 1
         },
         {
-            "ID": 2,
+            "ID": 1,
             "nodeA-ID": 0,
             "nodeB-ID": 1
         },
         {
+            "ID": 2,
+            "nodeA-ID": 2,
+            "nodeB-ID": 3
+        },
+        {
             "ID": 3,
-            "nodeA-ID": 4,
-            "nodeB-ID": 1
+            "nodeA-ID": 2,
+            "nodeB-ID": 4
         },
         {
             "ID": 4,
-            "nodeA-ID": 3,
-            "nodeB-ID": 4
+            "nodeA-ID": 4,
+            "nodeB-ID": 1
         }
     ],
     "nodes": [
         {
             "ID": 0,
             "nodecenter": {
-                "x": -174,
-                "y": -154
-            },
-            "nodelabel": "Node B"
-        },
-        {
-            "ID": 1,
-            "nodecenter": {
-                "x": -8,
-                "y": -68
+                "x": -384,
+                "y": -167
             },
             "nodelabel": "Node A"
         },
         {
+            "ID": 1,
+            "nodecenter": {
+                "x": -110,
+                "y": -300
+            },
+            "nodelabel": "Node B"
+        },
+        {
             "ID": 2,
             "nodecenter": {
-                "x": -184,
-                "y": 115
+                "x": -294,
+                "y": -403
             },
             "nodelabel": "Node C"
         },
         {
             "ID": 3,
             "nodecenter": {
-                "x": 136,
-                "y": 85
+                "x": -485,
+                "y": -509
             },
             "nodelabel": "Node D"
         },
         {
             "ID": 4,
             "nodecenter": {
-                "x": 203,
-                "y": -176
+                "x": -45,
+                "y": -505
             },
             "nodelabel": "Node E"
         }
