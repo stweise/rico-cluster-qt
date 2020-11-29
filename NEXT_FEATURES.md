@@ -1,6 +1,5 @@
 # Collection of next features to implement
 
-* pan on whiteboard using space bar + mouse drag
 * add direction arrow to edges
 * allow multiline node labels (it is often more pragmatic and space saving to have this)
   * provide several centering options

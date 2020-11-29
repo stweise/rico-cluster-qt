@@ -28,6 +28,8 @@ add_executable(rico-cluster-qt ${GUI_TYPE}
     mainwindow.ui
     graphicsscene.h
     graphicsscene.cpp
+    graphicsview.h
+    graphicsview.cpp
     node.h
     node.cpp
     edge.h

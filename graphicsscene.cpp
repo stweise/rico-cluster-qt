@@ -16,11 +16,10 @@
 #include <QtDebug>
 #include <QPdfWriter>
 
-GraphicsScene::GraphicsScene(QObject *parent)
-    :QGraphicsScene::QGraphicsScene(parent)
+GraphicsScene::GraphicsScene(QObject *parent) :QGraphicsScene::QGraphicsScene(parent)
 {
     //qDebug() << "FOo";
-		this->setItemIndexMethod(QGraphicsScene::ItemIndexMethod::NoIndex);
+    this->setItemIndexMethod(QGraphicsScene::ItemIndexMethod::NoIndex);
 }
 GraphicsScene::~GraphicsScene()
 {

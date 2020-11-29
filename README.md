@@ -57,6 +57,7 @@ After starting the application use the following input commands:
 * DELETE/BACKSPACE: deletes edge/node under current selection
 * drag and drop is supported (extendable by selection)
 * drawing area (canvas) is extending, when objects are moved towards the edge
+* "space" + mouse drag: pan on whiteboard
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
