@@ -16,6 +16,7 @@ void GraphicsView::keyPressEvent(QKeyEvent *event)
             {
                 //qDebug() << "Entering drag mode";
                 this->setDragMode(QGraphicsView::ScrollHandDrag);
+                this->setInteractive(false);
             }
             break;
         }
@@ -35,6 +36,7 @@ void GraphicsView::keyReleaseEvent(QKeyEvent *event)
         {
             if (this->dragMode() == QGraphicsView::ScrollHandDrag)
             {
+                this->setInteractive(true);
                 this->setDragMode(QGraphicsView::NoDrag);
                 //qDebug() << "Leaving drag mode";
             }
