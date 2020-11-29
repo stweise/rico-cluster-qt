@@ -5,6 +5,7 @@
 #include <QString>
 
 static int instantiationCounter = 0;
+int nodeDrawingStyle=2; // 1 - ellipse, 2 - rectangle
 
 Node::Node(QPointF center, QString label)
     :QGraphicsItem::QGraphicsItem(nullptr)
@@ -69,15 +70,24 @@ QJsonObject Node::returnJsonObj()
 
 QRectF Node::boundingRect() const
 {
-    QFont font("Helvetica", 24);
+    // default fontsize for drawing is 9 right now, we use a bounding box of the text drawn
+    // with an increased font size to determine a bounding box that will fit our content
+    int increasedFontSize=16;
+    if (nodeDrawingStyle == 1) // ellipse
+    {
+        increasedFontSize=24;
+    }
+    else if (nodeDrawingStyle == 2) //rect
+    {
+        increasedFontSize=14;
+    }
+    QFont font("Helvetica", increasedFontSize);
     QFontMetrics fm(font);
-    QRectF rect = fm.boundingRect(nodelabel);
+    QRectF rect = fm.boundingRect(QRect(),Qt::AlignLeft,nodelabel, 0,nullptr);
     // 0,0 is the center of our node
     rect.moveCenter(QPointF(0,0));
     return rect.normalized();
-
 }
-
 
 void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
@@ -92,8 +102,17 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
         brush.setColor(QColor(255, 173, 155));
     }
     painter->setBrush(brush);
-    painter->drawEllipse(rect);
+    if (nodeDrawingStyle == 1)
+    {
+        painter->drawEllipse(rect);
+    }
+    else if (nodeDrawingStyle == 2)
+    {
+        pen.setWidth(2);
+        painter->drawRoundedRect(rect, 5,5);
+    }
     painter->drawText(rect, Qt::AlignCenter, nodelabel);
+    //qDebug() << painter->fontInfo().pointSize();
 }
 
 int Node::type() const
