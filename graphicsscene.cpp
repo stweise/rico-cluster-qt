@@ -2,6 +2,7 @@
 #include "graphicsscene.h"
 #include "edge.h"
 #include "node.h"
+#include "inputdialog.h"
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
@@ -199,22 +200,23 @@ void GraphicsScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * mouseEvent)
         int itemtype = undercursor->type();
         //If it is a node
         if (itemtype==65537)
-        {
-            Node* node = (Node*) undercursor;
-            QString text = QInputDialog::getMultiLineText(nullptr, tr("Modify node label"), tr("Node label:"), node->nodelabel, &ok);
-            if (ok && !text.isEmpty())
-            {
-                node->nodelabel=text;
-                update();
-            }
-        }
+				{
+					Node* node = (Node*) undercursor;
+					InputDialog d(nullptr,"Modify node label", node->nodelabel);
+					ok=!!d.exec();
+					QString text=d.getText();
+					if (ok && !text.isEmpty())
+					{
+						node->nodelabel=text;
+						update();
+					}
+				}
     }
     else
     {
-        //this is called when we create a new node
-        //The input dialog is now not ended by pressing "Enter", we want this to be the default behavior for fast input
-        //Need to subclass QInputDialog and call our own here
-        QString text = QInputDialog::getMultiLineText(nullptr, tr("Modify node label"), tr("Node label:"), "", &ok);
+        InputDialog d(nullptr,"Create node label", "");
+        ok=!!d.exec();
+        QString text=d.getText();
         if (ok && !text.isEmpty())
         {
             Node *node = new Node(mouseEvent->scenePos(), text);

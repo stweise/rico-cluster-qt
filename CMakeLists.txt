@@ -26,6 +26,8 @@ add_executable(rico-cluster-qt ${GUI_TYPE}
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    inputdialog.h
+    inputdialog.cpp
     graphicsscene.h
     graphicsscene.cpp
     graphicsview.h

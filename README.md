@@ -49,6 +49,7 @@ Project > Open Project > Import the CMakeLists.txt > Build
 After starting the application use the following input commands:
 
 * double-click on empty space: create a new node
+  * node label dialog supports multiple lines and fast entry (Ctrl-Enter/Return) or (COMMAND-Return) for "Ok"
 * double-click on a node: update node label (old text is default for new label)
 * single-click on a node: selects node
 * (Windows & Linux) CTRL-click on a node or edge: toggles selection on node or edge
