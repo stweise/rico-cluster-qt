@@ -1,5 +1,11 @@
 # Changelog
 
+## future version - not released yet
+
+* pan on whiteboard using space bar + mouse drag
+* ellipses are replaced as a node signifier with rounded rectangles (better use of space)
+
+
 ## Version 1.1
 
 * feature: old node label is now given as default text when editing a node
