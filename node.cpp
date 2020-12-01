@@ -3,6 +3,7 @@
 #include <QFontMetrics>
 #include <QJsonObject>
 #include <QString>
+#include <QApplication>
 
 static int instantiationCounter = 0;
 int nodeDrawingStyle=2; // 1 - ellipse, 2 - rectangle
@@ -70,16 +71,16 @@ QJsonObject Node::returnJsonObj()
 
 QRectF Node::boundingRect() const
 {
-    // default fontsize for drawing is 9 right now, we use a bounding box of the text drawn
+    // default fontsize for drawing is determined, then we use a bounding box of the text drawn
     // with an increased font size to determine a bounding box that will fit our content
-    int increasedFontSize=16;
+    int increasedFontSize=QApplication::font().pointSize();
     if (nodeDrawingStyle == 1) // ellipse
     {
-        increasedFontSize=24;
+        increasedFontSize+=12;
     }
     else if (nodeDrawingStyle == 2) //rect
     {
-        increasedFontSize=14;
+        increasedFontSize+=4;
     }
     QFont font("Helvetica", increasedFontSize);
     QFontMetrics fm(font);
