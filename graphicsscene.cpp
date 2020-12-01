@@ -356,7 +356,7 @@ void GraphicsScene::print()
         QPdfWriter pdfwriter(savefilename);
         pdfwriter.setPageSize(QPageSize(QPageSize::A4));
         pdfwriter.setPageMargins(QMargins(30, 30, 30, 30));
-        pdfwriter.setResolution(600);
+        pdfwriter.setResolution(300);
         pdfwriter.setPageOrientation(QPageLayout::Landscape);
         QPainter painter(&pdfwriter);
         painter.setFont(QFont("Helvetica", 2));

@@ -57,7 +57,7 @@
                 "x": -485,
                 "y": -509
             },
-            "nodelabel": "Node D"
+            "nodelabel": "Node D\nThis is it"
         },
         {
             "ID": 4,
@@ -65,7 +65,7 @@
                 "x": -45,
                 "y": -505
             },
-            "nodelabel": "Node E"
+            "nodelabel": "Node E\nhas special size"
         }
     ],
     "version": 1
