@@ -10,7 +10,7 @@
 InputDialog::InputDialog(QWidget *parent, QString dialogLabel, QString defaultText) : QDialog::QDialog(parent)
 {
        setWindowTitle(dialogLabel);
-       label = new QLabel(tr(dialogLabel.append(":\n(Ctrl+Enter in text editor for \"Ok\")").toStdString().c_str() ));
+       label = new QLabel(tr(dialogLabel.append(":\n(Ctrl/CMD+Enter in text editor for \"Ok\")").toStdString().c_str() ));
        lineEdit = new QPlainTextEdit;
        buttons = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
        label->setBuddy(lineEdit);
