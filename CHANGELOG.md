@@ -2,8 +2,9 @@
 
 ## future version - not released yet
 
-* pan on whiteboard using space bar + mouse drag
-* ellipses are replaced as a node signifier with rounded rectangles (better use of space)
+* feature: pan on whiteboard using space bar + mouse drag
+* change: ellipses are replaced as a node signifier with rounded rectangles (better use of space)
+* feature: allow multiline node labels
 
 
 ## Version 1.1
