@@ -23,6 +23,7 @@ public:
     int ID;
     Node * nodeA;
     Node * nodeB;
+    int directed;
 private:
     enum { Type = UserType + 2 };
 };

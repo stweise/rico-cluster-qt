@@ -321,8 +321,8 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                     }
                 }
             }
-        }
         update();
+        }
     }
     if (keyEvent->key() == Qt::Key_E)
     {
@@ -338,9 +338,31 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                 edges.push_back(e);
                 update();
                 this->clearSelection();
+                update();
             }
         }
-				update();
+    }
+    if (keyEvent->key() == Qt::Key_A)
+    {
+        if ( selList.size() == 1)
+        {
+                QGraphicsItem * item = selList[0];
+                int itemtype = item->type();
+                //If it is a node
+                if (itemtype==65538)
+                {
+                    Edge *e = dynamic_cast<Edge*>(item);
+                    if (e->directed != 2)
+                    {
+                        e->directed++;
+                    }
+                    else
+                    {
+                        e->directed=0;
+                    }
+                    update();
+                }
+        }
     }
     QGraphicsScene::keyPressEvent(keyEvent);
 }

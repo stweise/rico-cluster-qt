@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 #include "edge.h"
+#include <math.h>
 #include <QDebug>
 #include <QPointF>
 #include <QJsonObject>
@@ -14,6 +15,7 @@ Edge::Edge(Node* npA, Node* npB)
         instantionID++;
         setFlag(ItemIsSelectable);
         qDebug() << "Edge Constructor ID: " << ID << "From: " << nodeA->ID << " - " << nodeB->ID;
+        directed = 0;
     }
 }
 
@@ -47,6 +49,89 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     pen.setWidth(3);
     painter->setPen(pen);
     painter->drawLine(nodeA->scenePos(),nodeB->scenePos());
+    if (directed != 0)
+    {
+        Node * NodeFrom;
+        Node * NodeTo;
+        if(directed == 1 ) // from A to B
+        {
+            NodeFrom = nodeA;
+            NodeTo = nodeB;
+        }
+        else
+        {
+            NodeFrom = nodeB;
+            NodeTo = nodeA;
+        }
+        QPainterPath nodePath = NodeTo->mapToScene( NodeTo->shape());
+        QPainterPath linePath;
+        linePath.moveTo(NodeFrom->scenePos());
+        linePath.lineTo(NodeTo->scenePos());
+        QPainterPath in = linePath.intersected(nodePath);
+        //Take the first element of the intersection and take these "moveTo" coordinates to start drawing
+        qreal x= 0.0;
+        qreal y= 0.0;
+        qreal x1=NodeTo->scenePos().x();
+        qreal y1=NodeTo->scenePos().y();
+        qreal x2=NodeFrom->scenePos().x();
+        qreal y2=NodeFrom->scenePos().y();
+        //qDebug() << NodeTo->scenePos() << NodeFrom->scenePos();
+        if (in.elementCount() > 0)
+        {
+            //qDebug() << "Coord: " << in.elementAt(0).x << in.elementAt(0).y;
+            x= in.elementAt(0).x;
+            y= in.elementAt(0).y;
+        }
+        else // usually happens when delta-x or delta-y are zero
+        {
+            if(fabs(x2-x1)<0.0000001) //vertical
+            {
+                qreal distance = NodeTo->boundingRect().height()/2.0; // vertical
+                if (y2<y1)
+                {
+                    y=y1-distance;
+                }
+                else
+                {
+                    y=y1+distance;
+                }
+                x=x1;
+            }
+            else if (fabs(y2-y1)<0.0000001) // horizontal
+            {
+                qreal distance = NodeTo->boundingRect().width()/2.0;
+                if (x2<x1)
+                {
+                    x=x1-distance;
+                }
+                else
+                {
+                    x=x1+distance;
+                }
+                y=y1;
+            }
+            else //this should never happen, but let us see
+            {
+                x=0;
+                y=0;
+            }
+        }
+        // draw polygon for triangle
+        QPolygonF poly;
+        poly << QPointF(0,0) << QPointF(20.0, 7.0) << QPointF(20.0, -7.0);
+        QTransform t;
+        t.translate(x,y);
+        qreal angle = atan2(y2-y1,x2-x1);
+        angle *= 180.0/M_PI;
+        //qDebug() << "Angle: " << angle;
+        //qDebug() << "x:" << x << "y:" << y;
+        t.rotate(angle);
+        QPolygonF poly2 = t.map(poly);
+        pen.setWidth(1);
+        painter->setPen(pen);
+        painter->setBrush(Qt::black);
+        painter->drawPolygon(poly2, Qt::WindingFill);
+    }
 }
 
 int Edge::type() const
