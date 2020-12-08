@@ -17,6 +17,8 @@
 #include <QtDebug>
 #include <QPdfWriter>
 
+enum CustomItemType {ITEMNODE=65537, ITEMEDGE=65538};
+
 GraphicsScene::GraphicsScene(QObject *parent) :QGraphicsScene::QGraphicsScene(parent)
 {
     //qDebug() << "FOo";
@@ -165,7 +167,6 @@ void GraphicsScene::load()
     }
 }
 
-
 void GraphicsScene::writeJsonFromScene(QJsonObject &json)
 {
     json["version"] = 2;
@@ -205,7 +206,7 @@ void GraphicsScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * mouseEvent)
     {
         int itemtype = undercursor->type();
         //If it is a node
-        if (itemtype==65537)
+        if (itemtype==ITEMNODE)
 				{
 					Node* node = (Node*) undercursor;
 					InputDialog d(nullptr,"Modify node label", node->nodelabel);
@@ -271,7 +272,7 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                 QGraphicsItem * item = selList[i];
                 int itemtype = item->type();
                 //If it is a node
-                if (itemtype==65537)
+                if (itemtype==ITEMNODE)
                 {
                     //Look for all edges pointing to this node
                     //Delete all associated edges
@@ -311,7 +312,7 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                     }
                 }
                 //If it is an edge
-                else if (itemtype==65538)
+                else if (itemtype==ITEMEDGE)
                 {
                     //lookup where it is in vector
                     std::vector<Edge*>::iterator it;
@@ -337,7 +338,7 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
             // both are nodes/ellipsies
             Node *itemA = dynamic_cast<Node*>(selList.first());
             Node *itemB = dynamic_cast<Node*>(selList.last());
-            if (itemA->type()==65537 && itemB->type()==65537)
+            if (itemA->type()==ITEMNODE && itemB->type()==ITEMNODE)
             {
                 Edge *e = new Edge(itemA, itemB, undirected);
                 this->addItem(e);
@@ -354,8 +355,8 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
         {
                 QGraphicsItem * item = selList[0];
                 int itemtype = item->type();
-                //If it is a node
-                if (itemtype==65538)
+                //If it is a edge
+                if (itemtype==ITEMEDGE)
                 {
                     Edge *e = dynamic_cast<Edge*>(item);
                     switch(e->directed)
