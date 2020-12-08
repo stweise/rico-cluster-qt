@@ -2,26 +2,31 @@
     "edges": [
         {
             "ID": 0,
+            "directed": 0,
             "nodeA-ID": 2,
             "nodeB-ID": 1
         },
         {
             "ID": 1,
+            "directed": 0,
             "nodeA-ID": 0,
             "nodeB-ID": 1
         },
         {
             "ID": 2,
+            "directed": 1,
             "nodeA-ID": 2,
             "nodeB-ID": 3
         },
         {
             "ID": 3,
+            "directed": 2,
             "nodeA-ID": 2,
             "nodeB-ID": 4
         },
         {
             "ID": 4,
+            "directed": 1,
             "nodeA-ID": 4,
             "nodeB-ID": 1
         }
@@ -68,5 +73,5 @@
             "nodelabel": "Node E\nhas special size"
         }
     ],
-    "version": 1
+    "version": 2
 }
