@@ -1,6 +1,10 @@
 # Changelog
 
-## future version - not released yet
+## Version 1.3
+
+* feature: add direction arrow to edges (by pressing 'A'-key), cycling through directions and undirected mode
+
+## Version 1.2
 
 * feature: pan on whiteboard using space bar + mouse drag
 * change: ellipses are replaced as a node signifier with rounded rectangles (better use of space)

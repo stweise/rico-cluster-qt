@@ -59,6 +59,10 @@ After starting the application use the following input commands:
 * drag and drop is supported (extendable by selection)
 * drawing area (canvas) is extending, when objects are moved towards the edge
 * "space" + mouse drag: pan on whiteboard
+* pressing "A"-key while an edge is selected adds an arrow, repeated pressing of "A" cycles through:
+  * edge from node A to B
+	* edge from node B to A
+	* edge without any direction arrows
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
