@@ -5,7 +5,7 @@
 #include <QPointF>
 #include <QJsonObject>
 static int instantionID = 0;
-Edge::Edge(Node* npA, Node* npB)
+Edge::Edge(Node* npA, Node* npB, directedSelection dir)
 {
     if (npA->ID != npB->ID)
     {
@@ -15,7 +15,7 @@ Edge::Edge(Node* npA, Node* npB)
         instantionID++;
         setFlag(ItemIsSelectable);
         qDebug() << "Edge Constructor ID: " << ID << "From: " << nodeA->ID << " - " << nodeB->ID;
-        directed = 0;
+        directed = dir;
     }
 }
 
@@ -31,6 +31,7 @@ QJsonObject Edge::returnJsonObj()
         obj.insert(QString("ID"), QJsonValue(ID));
         obj.insert(QString("nodeA-ID"), QJsonValue(nodeA->ID));
         obj.insert(QString("nodeB-ID"), QJsonValue(nodeB->ID));
+        obj.insert(QString("directed"), QJsonValue(directed));
         return obj;
 }
 
@@ -49,16 +50,16 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     pen.setWidth(3);
     painter->setPen(pen);
     painter->drawLine(nodeA->scenePos(),nodeB->scenePos());
-    if (directed != 0)
+    if (directed != undirected)
     {
         Node * NodeFrom;
         Node * NodeTo;
-        if(directed == 1 ) // from A to B
+        if(directed == AtoB ) // from A to B
         {
             NodeFrom = nodeA;
             NodeTo = nodeB;
         }
-        else
+        else // from B to A
         {
             NodeFrom = nodeB;
             NodeTo = nodeA;

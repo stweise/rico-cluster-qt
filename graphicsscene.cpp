@@ -124,6 +124,12 @@ void GraphicsScene::load()
                     {
                         nodeBID = jsonedge[nodeBIDname].toInt();
                     }
+                    directedSelection dirSel=undirected; //use this as a default if the property is not available (aka version 1)
+                    QString directedName = "directed";
+                    if (jsonedge.contains(directedName) && jsonedge[directedName].isDouble())
+                    {
+                        dirSel = (directedSelection) jsonedge[directedName].toInt();
+                    }
                     // Find nodes by ID from vector of nodes
                     std::vector<Node*>::iterator nit = nodes.begin();
                     Node *nodeA;
@@ -140,7 +146,7 @@ void GraphicsScene::load()
                         }
                         ++nit;
                     }
-                    Edge *edge = new Edge(nodeA, nodeB);
+                    Edge *edge = new Edge(nodeA, nodeB, dirSel);
                     edge->ID = ID;
                     //qDebug() << edge;
                     this->addItem(edge);
@@ -162,7 +168,7 @@ void GraphicsScene::load()
 
 void GraphicsScene::writeJsonFromScene(QJsonObject &json)
 {
-    json["version"] = 1;
+    json["version"] = 2;
     //create array of all the nodes
     QJsonArray nodearray;
     std::vector<Node*>::iterator nit = nodes.begin();
@@ -333,7 +339,7 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
             Node *itemB = dynamic_cast<Node*>(selList.last());
             if (itemA->type()==65537 && itemB->type()==65537)
             {
-                Edge *e = new Edge(itemA, itemB);
+                Edge *e = new Edge(itemA, itemB, undirected);
                 this->addItem(e);
                 edges.push_back(e);
                 update();
@@ -352,14 +358,14 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                 if (itemtype==65538)
                 {
                     Edge *e = dynamic_cast<Edge*>(item);
-                    if (e->directed != 2)
+                    switch(e->directed)
                     {
-                        e->directed++;
+                        case undirected: e->directed=AtoB; break;
+                        case AtoB: e->directed=BtoA; break;
+                        case BtoA: e->directed=undirected; break;
+                        default: e->directed=undirected;
                     }
-                    else
-                    {
-                        e->directed=0;
-                    }
+
                     update();
                 }
         }

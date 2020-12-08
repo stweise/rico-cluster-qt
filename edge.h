@@ -7,10 +7,11 @@
 #include <QPainter>
 #include <QPointF>
 
+enum directedSelection { undirected, AtoB, BtoA};
 class Edge :public QGraphicsItem
 {
 public:
-    Edge(Node * pA, Node* pB);
+    Edge(Node * pA, Node* pB, directedSelection directed);
     ~Edge();
 
     virtual QRectF boundingRect() const;
@@ -23,7 +24,7 @@ public:
     int ID;
     Node * nodeA;
     Node * nodeB;
-    int directed;
+    directedSelection directed;
 private:
     enum { Type = UserType + 2 };
 };
