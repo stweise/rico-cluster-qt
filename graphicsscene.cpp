@@ -46,6 +46,7 @@ void GraphicsScene::save()
         saveFile.close();
     }
 }
+
 void GraphicsScene::saveAs()
 {
     QString filter = FILEDESC;
@@ -193,6 +194,46 @@ void GraphicsScene::writeJsonFromScene(QJsonObject &json)
     }
     //add node array to original QJsonObject
     json.insert(QString("edges"),edgearray);
+}
+
+void GraphicsScene::writeDotFromScene()
+{
+    QFile file("../resources/rico-cluster-qt-save.dot");
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QTextStream stream(&file);
+        stream << "digraph \"funky\" {\n";
+        std::vector<Node*>::iterator nit = nodes.begin();
+        while (nit != nodes.end())
+        {
+            QString cleanedLabel = (*nit)->nodelabel;
+            cleanedLabel.replace("\n","\\n");
+            stream << "node" << (*nit)->ID << " [label=\"" << cleanedLabel << "\"];\n";
+            ++nit;
+        }
+
+        std::vector<Edge*>::iterator eit = edges.begin();
+        while (eit != edges.end())
+        {
+            if ((*eit)->directed == undirected || (*eit)->directed == AtoB)
+            {
+                stream << "node" << (*eit)->nodeA->ID << " -> "<< "node" << (*eit)->nodeB->ID;
+                if ((*eit)->directed == undirected)
+                {
+                    stream << " [dir=none]";
+                }
+                stream << ";\n";
+            }
+            else
+            {
+                stream << "node" << (*eit)->nodeB->ID << " -> "<< "node" << (*eit)->nodeA->ID<< ";\n";
+            }
+            ++eit;
+        }
+        stream << "}" << '\n';
+
+        file.close();
+    }
 }
 
 
@@ -370,6 +411,10 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                     update();
                 }
         }
+    }
+    if (keyEvent->key() == Qt::Key_S)
+    {
+        writeDotFromScene();
     }
     QGraphicsScene::keyPressEvent(keyEvent);
 }
