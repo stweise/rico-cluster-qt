@@ -1,0 +1,12 @@
+digraph "funky" {
+node0 [label="Node A"];
+node1 [label="Node B"];
+node2 [label="Node C"];
+node3 [label="Node D\nThis is it"];
+node4 [label="Node E\nhas special size"];
+node2 -> node1 [dir=none];
+node0 -> node1 [dir=none];
+node2 -> node3;
+node4 -> node2;
+node4 -> node1;
+}

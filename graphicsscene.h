@@ -37,6 +37,7 @@ public:
     void load();
     void print();
     void writeJsonFromScene(QJsonObject &json);
+    void writeDotFromScene();
 private:
     std::vector<Edge*> edges;
     std::vector<Node*> nodes;
