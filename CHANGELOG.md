@@ -1,5 +1,9 @@
 # Changelog
 
+## unreleased Version 1.4
+
+* feature: exports rico cluster as graphiz dot digraph file
+
 ## Version 1.3
 
 * feature: add direction arrow to edges (by pressing 'A'-key), cycling through directions and undirected mode
