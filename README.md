@@ -35,14 +35,12 @@ make
 ./rico-cluster-qt
 ```
 
-
 ### Installation from source via QT Creator
 
 Either compile it using the QT open source license or download one of the releases.
 
 In QT Creator:
 Project > Open Project > Import the CMakeLists.txt > Build
-
 
 ## Usage
 
@@ -63,6 +61,16 @@ After starting the application use the following input commands:
   * edge from node A to B
 	* edge from node B to A
 	* edge without any direction arrows
+
+## Export as dot
+
+rico-cluster-qt supports export to the dot format used by [graphviz](https://graphviz.org/).
+
+The graph shown in Screenshots looks like this rendered using dot:
+
+![rendered dot export](resources/rico-cluster-qt-from-dot.png)
+
+please see [resources/render_with_graphviz.sh](resources/render_with_graphviz.sh) for details.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

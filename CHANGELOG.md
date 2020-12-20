@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased Version 1.4
+## Version 1.4
 
 * feature: exports rico cluster as graphiz dot digraph file
 
