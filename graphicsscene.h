@@ -16,8 +16,11 @@
 #include "node.h"
 #include <vector>
 
-#ifndef FILEDESC
-#define FILEDESC "rico-cluster-qt cluster (*.json)"
+#ifndef SAVEFILEDESC
+#define SAVEFILEDESC "rico-cluster-qt cluster (*.json)"
+#endif
+#ifndef EXPORTDOTFILEDESC
+#define EXPORTDOTFILEDESC "graphviz dot digraph (*.dot)"
 #endif
 
 class GraphicsScene : public QGraphicsScene
@@ -37,7 +40,7 @@ public:
     void load();
     void print();
     void writeJsonFromScene(QJsonObject &json);
-    void writeDotFromScene();
+    void exportToDot();
 private:
     std::vector<Edge*> edges;
     std::vector<Node*> nodes;

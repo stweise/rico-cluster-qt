@@ -29,6 +29,8 @@ private slots:
 
     void on_actionSave_as_triggered();
 
+    void on_actionExport_triggered();
+
 private:
     Ui::MainWindow *ui;
     GraphicsScene *scene;

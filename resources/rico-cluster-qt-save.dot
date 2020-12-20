@@ -1,4 +1,4 @@
-digraph "funky" {
+digraph "rico-cluster-qt-save" {
 node0 [label="Node A"];
 node1 [label="Node B"];
 node2 [label="Node C"];
