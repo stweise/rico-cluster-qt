@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QInputDialog>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -49,7 +50,7 @@ void GraphicsScene::save()
 
 void GraphicsScene::saveAs()
 {
-    QString filter = FILEDESC;
+    QString filter = SAVEFILEDESC;
     QDir examplePath = QDir::home();
     QString absolutePath = examplePath.absoluteFilePath("save.json");
     QString savefilename = QFileDialog::getSaveFileName(nullptr, tr("Save File"), absolutePath , filter, &filter);
@@ -74,7 +75,7 @@ void GraphicsScene::load()
     /* this means the current cluster is empty*/
     if ( edges.size()==0 && nodes.size() == 0)
     {
-        QString loadfilename = QFileDialog::getOpenFileName(nullptr, tr("Open File"), QDir::homePath(), tr(FILEDESC));
+        QString loadfilename = QFileDialog::getOpenFileName(nullptr, tr("Open File"), QDir::homePath(), tr(SAVEFILEDESC));
         //only do something when a valid file name was returned
         if (!loadfilename.isEmpty())
         {
@@ -196,43 +197,51 @@ void GraphicsScene::writeJsonFromScene(QJsonObject &json)
     json.insert(QString("edges"),edgearray);
 }
 
-void GraphicsScene::writeDotFromScene()
+void GraphicsScene::exportToDot()
 {
-    QFile file("../resources/rico-cluster-qt-save.dot");
-    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    QString fileTypeFilter = EXPORTDOTFILEDESC;
+    QDir homePath = QDir::home();
+    QString absoluteHomePath = homePath.absoluteFilePath("export.dot");
+    QString exportFileName = QFileDialog::getSaveFileName(nullptr, tr("Export File"), absoluteHomePath , fileTypeFilter, &fileTypeFilter);
+    if (!exportFileName.isEmpty())
     {
-        QTextStream stream(&file);
-        stream << "digraph \"funky\" {\n";
-        std::vector<Node*>::iterator nit = nodes.begin();
-        while (nit != nodes.end())
+        QFile exportFile(exportFileName);
+        QString graphName = QFileInfo(exportFile).baseName();
+        if(exportFile.open(QIODevice::WriteOnly | QIODevice::Text))
         {
-            QString cleanedLabel = (*nit)->nodelabel;
-            cleanedLabel.replace("\n","\\n");
-            stream << "node" << (*nit)->ID << " [label=\"" << cleanedLabel << "\"];\n";
-            ++nit;
-        }
-
-        std::vector<Edge*>::iterator eit = edges.begin();
-        while (eit != edges.end())
-        {
-            if ((*eit)->directed == undirected || (*eit)->directed == AtoB)
+            QTextStream stream(&exportFile);
+            stream << "digraph \"" << graphName << "\" {\n";
+            std::vector<Node*>::iterator nit = nodes.begin();
+            while (nit != nodes.end())
             {
-                stream << "node" << (*eit)->nodeA->ID << " -> "<< "node" << (*eit)->nodeB->ID;
-                if ((*eit)->directed == undirected)
+                QString cleanedLabel = (*nit)->nodelabel;
+                cleanedLabel.replace("\n","\\n");
+                stream << "node" << (*nit)->ID << " [label=\"" << cleanedLabel << "\"];\n";
+                ++nit;
+            }
+
+            std::vector<Edge*>::iterator eit = edges.begin();
+            while (eit != edges.end())
+            {
+                if ((*eit)->directed == undirected || (*eit)->directed == AtoB)
                 {
-                    stream << " [dir=none]";
+                    stream << "node" << (*eit)->nodeA->ID << " -> "<< "node" << (*eit)->nodeB->ID;
+                    if ((*eit)->directed == undirected)
+                    {
+                        stream << " [dir=none]";
+                    }
+                    stream << ";\n";
                 }
-                stream << ";\n";
+                else
+                {
+                    stream << "node" << (*eit)->nodeB->ID << " -> "<< "node" << (*eit)->nodeA->ID<< ";\n";
+                }
+                ++eit;
             }
-            else
-            {
-                stream << "node" << (*eit)->nodeB->ID << " -> "<< "node" << (*eit)->nodeA->ID<< ";\n";
-            }
-            ++eit;
-        }
-        stream << "}" << '\n';
+            stream << "}" << '\n';
 
-        file.close();
+            exportFile.close();
+        }
     }
 }
 
@@ -411,10 +420,6 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent)
                     update();
                 }
         }
-    }
-    if (keyEvent->key() == Qt::Key_S)
-    {
-        writeDotFromScene();
     }
     QGraphicsScene::keyPressEvent(keyEvent);
 }

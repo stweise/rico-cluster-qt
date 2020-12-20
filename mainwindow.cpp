@@ -36,3 +36,8 @@ void MainWindow::on_actionSave_as_triggered()
 {
     scene->saveAs();
 }
+
+void MainWindow::on_actionExport_triggered()
+{
+   scene->exportToDot();
+}
