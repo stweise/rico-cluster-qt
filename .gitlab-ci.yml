@@ -7,4 +7,8 @@ linux-build:
     - cd build
     - cmake ..
     - make -j4
+  artifacts:
+    paths:
+      - build/rico-cluster-qt
+    expire_in: 1 week
 
