@@ -35,6 +35,18 @@ make
 ./rico-cluster-qt
 ```
 
+On Ubuntu 20.04.1 LTS
+
+```bash
+sudo apt-get install build-essential cmake qtbase5-dev
+cd rico-cluster-qt
+mkdir build
+cd build
+cmake ..
+make
+./rico-cluster-qt
+```
+
 ### Installation from source via QT Creator
 
 Either compile it using the QT open source license or download one of the releases.
