@@ -70,97 +70,102 @@ void GraphicsScene::saveAs()
 
 void GraphicsScene::load()
 {
-    /* TODO */
-    /* ensure that this is only run, when no nodes are defined and no edges are defined*/
-    /* this means the current cluster is empty*/
+    /* ensures that this is only run, when no nodes are defined and no edges are defined */
+    /* this means the current cluster is empty */
     if ( edges.size()==0 && nodes.size() == 0)
-    {
-        QString loadfilename = QFileDialog::getOpenFileName(nullptr, tr("Open File"), QDir::homePath(), tr(SAVEFILEDESC));
-        //only do something when a valid file name was returned
-        if (!loadfilename.isEmpty())
-        {
-            QFile loadFile(loadfilename);
-            if (!loadFile.open(QIODevice::ReadOnly)) {
-                qWarning("Couldn't open save file.");
-            }
-            QByteArray loadData = loadFile.readAll();
-            QJsonDocument doc = QJsonDocument::fromJson(loadData);
-            QJsonObject json=doc.object();
-            int version=0;
-            if (json.contains("version") && json["version"].isDouble())
-                version = json["version"].toInt();
-            //qDebug() << "Version:" << version;
+		{
+			QString loadfilename = QFileDialog::getOpenFileName(nullptr, tr("Open File"), QDir::homePath(), tr(SAVEFILEDESC));
+			//only do something when a valid file name was returned
+			if (!loadfilename.isEmpty())
+			{
+				QFile loadFile(loadfilename);
+				if (!loadFile.open(QIODevice::ReadOnly)) {
+					qWarning("Couldn't open save file.");
+				}
+				QByteArray loadData = loadFile.readAll();
+				QJsonDocument doc = QJsonDocument::fromJson(loadData);
+				QJsonObject json=doc.object();
+				int version=0;
+				if (json.contains("version") && json["version"].isDouble())
+					version = json["version"].toInt();
+				//qDebug() << "Version:" << version;
 
-            // Load Nodes
-            QString nodesarrayname = "nodes";
-            if (json.contains(nodesarrayname) && json[nodesarrayname].isArray()) {
-                QJsonArray nodearray = json[nodesarrayname].toArray();
-                for (int i = 0; i < nodearray.size(); ++i)
-                {
-                    Node *node = new Node(nodearray[i].toObject());
-                    //qDebug() << node;
-                    this->addItem(node);
-                    nodes.push_back(node);
-                }
-            }
-            // Load Edges
-            QString edgesarrayname = "edges";
-            if (json.contains(edgesarrayname) && json[edgesarrayname].isArray()) {
-                QJsonArray edgearray = json[edgesarrayname].toArray();
-                for (int i = 0; i < edgearray.size(); ++i)
-                {
-                    QJsonObject jsonedge = edgearray[i].toObject();
-                    QString edgeIDname = "ID";
-                    int ID;
-                    if (jsonedge.contains(edgeIDname) && jsonedge[edgeIDname].isDouble())
-                    {
-                        ID = jsonedge[edgeIDname].toInt();
-                    }
-                    QString nodeAIDname = "nodeA-ID";
-                    int nodeAID;
-                    if (jsonedge.contains(nodeAIDname) && jsonedge[nodeAIDname].isDouble())
-                    {
-                        nodeAID = jsonedge[nodeAIDname].toInt();
-                    }
-                    QString nodeBIDname = "nodeB-ID";
-                    int nodeBID;
-                    if (jsonedge.contains(nodeBIDname) && jsonedge[nodeBIDname].isDouble())
-                    {
-                        nodeBID = jsonedge[nodeBIDname].toInt();
-                    }
-                    directedSelection dirSel=undirected; //use this as a default if the property is not available (aka version 1)
-                    QString directedName = "directed";
-                    if (jsonedge.contains(directedName) && jsonedge[directedName].isDouble())
-                    {
-                        dirSel = (directedSelection) jsonedge[directedName].toInt();
-                    }
-                    // Find nodes by ID from vector of nodes
-                    std::vector<Node*>::iterator nit = nodes.begin();
-                    Node *nodeA;
-                    Node *nodeB;
-                    while (nit != nodes.end())
-                    {
-                        if ((*nit)->ID == nodeAID)
-                        {
-                            nodeA = (*nit);
-                        }
-                        if ((*nit)->ID == nodeBID)
-                        {
-                            nodeB = (*nit);
-                        }
-                        ++nit;
-                    }
-                    Edge *edge = new Edge(nodeA, nodeB, dirSel);
-                    edge->ID = ID;
-                    //qDebug() << edge;
-                    this->addItem(edge);
-                    edges.push_back(edge);
-                }
-            }
-            loadFile.close();
-            this->saveFileName = loadfilename;
-        }
-    }
+				// Load Nodes
+				QString nodesarrayname = "nodes";
+				if (json.contains(nodesarrayname) && json[nodesarrayname].isArray()) {
+					QJsonArray nodearray = json[nodesarrayname].toArray();
+					for (int i = 0; i < nodearray.size(); ++i)
+					{
+						Node *node = new Node(nodearray[i].toObject());
+						//qDebug() << node;
+						this->addItem(node);
+						nodes.push_back(node);
+					}
+				}
+				// Load Edges
+				QString edgesarrayname = "edges";
+				if (json.contains(edgesarrayname) && json[edgesarrayname].isArray()) {
+					QJsonArray edgearray = json[edgesarrayname].toArray();
+					for (int i = 0; i < edgearray.size(); ++i)
+					{
+						QJsonObject jsonedge = edgearray[i].toObject();
+						QString edgeIDname = "ID";
+						int ID;
+						if (jsonedge.contains(edgeIDname) && jsonedge[edgeIDname].isDouble()) // needs an "ID" field
+						{
+							ID = jsonedge[edgeIDname].toInt();
+							QString nodeAIDname = "nodeA-ID";
+							int nodeAID;
+							if (jsonedge.contains(nodeAIDname) && jsonedge[nodeAIDname].isDouble()) // needs an "nodeA-ID" field
+							{
+								nodeAID = jsonedge[nodeAIDname].toInt();
+								QString nodeBIDname = "nodeB-ID";
+								int nodeBID;
+								if (jsonedge.contains(nodeBIDname) && jsonedge[nodeBIDname].isDouble()) // needs an "nodeB-ID" field
+								{
+									nodeBID = jsonedge[nodeBIDname].toInt();
+									directedSelection dirSel=undirected; //use this as a default if the property is not available (aka version 1)
+									QString directedName = "directed";
+									if (version >= 2 && jsonedge.contains(directedName) && jsonedge[directedName].isDouble())
+									{
+										dirSel = (directedSelection) jsonedge[directedName].toInt();
+									}
+									// Find nodes by ID from vector of nodes
+									std::vector<Node*>::iterator nit = nodes.begin();
+									Node *nodeA=nullptr;
+									Node *nodeB=nullptr;
+									while (nit != nodes.end())
+									{
+										if ((*nit)->ID == nodeAID)
+										{
+											nodeA = (*nit);
+										}
+										if ((*nit)->ID == nodeBID)
+										{
+											nodeB = (*nit);
+										}
+										++nit;
+									}
+									if (nodeA != nullptr && nodeB != nullptr)
+									{
+										Edge *edge = new Edge(nodeA, nodeB, dirSel);
+										edge->ID = ID;
+										this->addItem(edge);
+										edges.push_back(edge);
+									}
+									else
+									{
+										qFatal("\n Error \n Error:Node numbering inconsistency in array of edges.\n");
+									}
+								}
+							}
+						}
+					}
+				}
+				loadFile.close();
+				this->saveFileName = loadfilename;
+			}
+		}
     else
     {
         QMessageBox msgBox;
