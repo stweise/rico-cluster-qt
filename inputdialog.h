@@ -1,33 +1,31 @@
 #ifndef INPUTDIALOG_H
 #define INPUTDIALOG_H
 
-#include <QWidget>
 #include <QDialog>
+#include <QDialogButtonBox>
 #include <QLabel>
 #include <QPlainTextEdit>
-#include <QDialogButtonBox>
+#include <QWidget>
 
-class InputDialog : public QDialog
-{
-    Q_OBJECT
-public:
-    explicit InputDialog(QWidget *parent = nullptr, QString dialogLabel ="", QString defaultText ="");
-    ~InputDialog();
-    void keyPressEvent(QKeyEvent *e);
-    QString getText();
+class InputDialog : public QDialog {
+  Q_OBJECT
+ public:
+  explicit InputDialog(QWidget *parent = nullptr, QString dialogLabel = "",
+                       QString defaultText = "");
+  ~InputDialog();
+  void keyPressEvent(QKeyEvent *e);
+  QString getText();
 
-signals:
+ signals:
 
-private:
-    QLabel *label;
-    QPlainTextEdit *lineEdit;
-    QDialogButtonBox *buttons;
-    QString text;
+ private:
+  QLabel *label;
+  QPlainTextEdit *lineEdit;
+  QDialogButtonBox *buttons;
+  QString text;
 
-private slots:
-    void acceptAndStore();
-
-
+ private slots:
+  void acceptAndStore();
 };
 
-#endif // INPUTDIALOG_H
+#endif  // INPUTDIALOG_H

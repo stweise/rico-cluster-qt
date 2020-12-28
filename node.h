@@ -6,25 +6,23 @@
 #include <QPainter>
 #include <QPointF>
 
-class Node :public QGraphicsItem
-{
-public:
-    Node(QPointF center, QString label);
-    Node(QJsonObject json);
-    ~Node();
+class Node : public QGraphicsItem {
+ public:
+  Node(QPointF center, QString label);
+  Node(QJsonObject json);
+  ~Node();
 
-    virtual QRectF boundingRect() const;
-    virtual void paint(QPainter * painter,
-               const QStyleOptionGraphicsItem * option,
-               QWidget * widget);
-    virtual int type() const ;
-    QJsonObject returnJsonObj();
+  virtual QRectF boundingRect() const;
+  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
+                     QWidget* widget);
+  virtual int type() const;
+  QJsonObject returnJsonObj();
 
-    int ID;
-    QString nodelabel;
+  int ID;
+  QString nodelabel;
 
-private:
-    enum { Type = UserType + 1 };
+ private:
+  enum { Type = UserType + 1 };
 };
 
-#endif // NODE_H
+#endif  // NODE_H

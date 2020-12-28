@@ -1,32 +1,32 @@
 // SPDX-License-Identifier: BSD-3-Clause
 #ifndef EDGE_H
 #define EDGE_H
-#include "node.h"
 #include <QDebug>
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QPointF>
 
-enum directedSelection { undirected, AtoB, BtoA};
-class Edge :public QGraphicsItem
-{
-public:
-    Edge(Node * pA, Node* pB, directedSelection directed);
-    ~Edge();
+#include "node.h"
 
-    virtual QRectF boundingRect() const;
-    virtual void paint(QPainter * painter,
-               const QStyleOptionGraphicsItem * option,
-               QWidget * widget);
-    virtual int type() const ;
-    QJsonObject returnJsonObj();
+enum directedSelection { undirected, AtoB, BtoA };
+class Edge : public QGraphicsItem {
+ public:
+  Edge(Node* pA, Node* pB, directedSelection directed);
+  ~Edge();
 
-    int ID;
-    Node * nodeA;
-    Node * nodeB;
-    directedSelection directed;
-private:
-    enum { Type = UserType + 2 };
+  virtual QRectF boundingRect() const;
+  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
+                     QWidget* widget);
+  virtual int type() const;
+  QJsonObject returnJsonObj();
+
+  int ID;
+  Node* nodeA;
+  Node* nodeB;
+  directedSelection directed;
+
+ private:
+  enum { Type = UserType + 2 };
 };
 
-#endif // EDGE_H
+#endif  // EDGE_H
