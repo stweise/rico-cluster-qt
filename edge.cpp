@@ -42,7 +42,7 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                  QWidget *widget) {
   QPen pen(Qt::black);
   if (QGraphicsItem::isSelected()) {
-    pen.setColor(QColor(255, 173, 155));
+    pen.setColor(QColor(238, 54, 54));  // use red color to signify selection
   }
   pen.setWidth(3);
   painter->setPen(pen);

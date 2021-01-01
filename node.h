@@ -20,6 +20,7 @@ class Node : public QGraphicsItem {
 
   int ID;
   QString nodelabel;
+  int category;
 
  private:
   enum { Type = UserType + 1 };

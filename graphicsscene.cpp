@@ -292,8 +292,8 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
   QList<QGraphicsItem *> selList;
   // make a copy of the list
   selList.append(selectedItems());
-  if (keyEvent->key() == Qt::Key_Delete ||
-      keyEvent->key() == Qt::Key_Backspace) {
+  int key = keyEvent->key();
+  if (key == Qt::Key_Delete || key == Qt::Key_Backspace) {
     if (selList.size() != 0) {
       for (int i = 0; i < selList.size(); i++) {
         qDebug() << "i: " << i << " size: " << selList.size();
@@ -344,7 +344,7 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
       update();
     }
   }
-  if (keyEvent->key() == Qt::Key_E) {
+  if (key == Qt::Key_E) {
     if (selList.size() == 2) {
       // both are nodes/ellipsies
       Node *itemA = dynamic_cast<Node *>(selList.first());
@@ -359,7 +359,44 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
       }
     }
   }
-  if (keyEvent->key() == Qt::Key_A) {
+  if (key == Qt::Key_0 || key == Qt::Key_1 || key == Qt::Key_2 ||
+      key == Qt::Key_3 || key == Qt::Key_4 || key == Qt::Key_5) {
+    // walk all selection and only process nodes
+    if (selList.size() != 0) {
+      for (int i = 0; i < selList.size(); i++) {
+        Node *item = dynamic_cast<Node *>(selList[i]);
+        if (item->type() == ITEMNODE) {
+          int c;
+          switch (key) {
+            case Qt::Key_0:
+              c = 0;
+              break;
+            case Qt::Key_1:
+              c = 1;
+              break;
+            case Qt::Key_2:
+              c = 2;
+              break;
+            case Qt::Key_3:
+              c = 3;
+              break;
+            case Qt::Key_4:
+              c = 4;
+              break;
+            case Qt::Key_5:
+              c = 5;
+              break;
+            default:
+              c = 0;
+          }
+          item->category = c;
+        }
+      }
+      clearSelection();
+      update();
+    }
+  }
+  if (key == Qt::Key_A) {
     if (selList.size() == 1) {
       QGraphicsItem *item = selList[0];
       int itemtype = item->type();
@@ -379,7 +416,6 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
           default:
             e->directed = undirected;
         }
-
         update();
       }
     }

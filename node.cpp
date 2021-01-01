@@ -9,13 +9,20 @@
 static int instantiationCounter = 0;
 int nodeDrawingStyle = 2;  // 1 - ellipse, 2 - rectangle
 
+// grey for level 0, pastel colors for levels 1 - 5
+QColor CategoryColor[] = {
+    QColor(206, 206, 206), QColor(161, 224, 234), QColor(191, 238, 180),
+    QColor(246, 227, 168), QColor(238, 195, 152), QColor(223, 163, 163),
+};
+
 Node::Node(QPointF center, QString label)
     : QGraphicsItem::QGraphicsItem(nullptr) {
   QGraphicsItem::setPos(center);
   setFlag(ItemIsSelectable);
   setFlag(ItemIsMovable);
   nodelabel = label;
-  this->setZValue(2);
+  setZValue(2);
+  category = 0;  // sets default category 0 and thus default color
   ID = instantiationCounter;
   qDebug() << "Node Constructor ID: " << ID;
   instantiationCounter++;
@@ -44,7 +51,8 @@ Node::Node(QJsonObject json) : QGraphicsItem::QGraphicsItem(nullptr) {
       instantiationCounter = ID;
     }
   }
-  this->setZValue(2);
+  setZValue(2);
+  category = 0;
   qDebug() << "Node Constructor ID: " << ID;
 }
 
@@ -87,13 +95,14 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                  QWidget *widget) {
   QRectF rect = boundingRect();
   QPen pen(Qt::black);
+  if (QGraphicsItem::isSelected()) {
+    pen.setColor(
+        QColor(238, 54, 54));  // use red color for outer rim when selected
+  }
   pen.setWidth(3);
   painter->setPen(pen);
   // painter->setFont(QFont("Helvetica",10));
-  QBrush brush(QColor(206, 206, 206));
-  if (QGraphicsItem::isSelected()) {
-    brush.setColor(QColor(255, 173, 155));
-  }
+  QBrush brush(CategoryColor[category]);
   painter->setBrush(brush);
   if (nodeDrawingStyle == 1) {
     painter->drawEllipse(rect);
@@ -101,6 +110,11 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     pen.setWidth(2);
     painter->drawRoundedRect(rect, 5, 5);
   }
+  if (QGraphicsItem::isSelected()) {
+    pen.setColor(Qt::black);  // unless we reset the pen color, we would have
+                              // red text too
+  }
+  painter->setPen(pen);
   painter->drawText(rect, Qt::AlignCenter, nodelabel);
   // qDebug() << painter->fontInfo().pointSize();
 }
