@@ -24,15 +24,15 @@ enum CustomItemType { ITEMNODE = 65537, ITEMEDGE = 65538 };
 GraphicsScene::GraphicsScene(QObject *parent)
     : QGraphicsScene::QGraphicsScene(parent) {
   // qDebug() << "FOo";
-  this->setItemIndexMethod(QGraphicsScene::ItemIndexMethod::NoIndex);
+  setItemIndexMethod(QGraphicsScene::ItemIndexMethod::NoIndex);
 }
 GraphicsScene::~GraphicsScene() {}
 
 void GraphicsScene::save() {
-  if (this->saveFileName.isEmpty()) {
-    this->saveAs();
+  if (saveFileName.isEmpty()) {
+    saveAs();
   } else {
-    QFile saveFile(this->saveFileName);
+    QFile saveFile(saveFileName);
     if (!saveFile.open(QIODevice::WriteOnly)) {
       qWarning("Couldn't open save file.");
     }
@@ -58,7 +58,7 @@ void GraphicsScene::saveAs() {
     writeJsonFromScene(sceneObject);
     saveFile.write(QJsonDocument(sceneObject).toJson());
     saveFile.close();
-    this->saveFileName = savefilename;
+    saveFileName = savefilename;
   }
 }
 
@@ -90,7 +90,7 @@ void GraphicsScene::load() {
         for (int i = 0; i < nodearray.size(); ++i) {
           Node *node = new Node(nodearray[i].toObject());
           // qDebug() << node;
-          this->addItem(node);
+          addItem(node);
           nodes.push_back(node);
         }
       }
@@ -143,7 +143,7 @@ void GraphicsScene::load() {
                 if (nodeA != nullptr && nodeB != nullptr) {
                   Edge *edge = new Edge(nodeA, nodeB, dirSel);
                   edge->ID = ID;
-                  this->addItem(edge);
+                  addItem(edge);
                   edges.push_back(edge);
                 } else {
                   qFatal(
@@ -156,7 +156,7 @@ void GraphicsScene::load() {
         }
       }
       loadFile.close();
-      this->saveFileName = loadfilename;
+      saveFileName = loadfilename;
     }
   } else {
     QMessageBox msgBox;
@@ -239,8 +239,7 @@ void GraphicsScene::exportToDot() {
 void GraphicsScene::mouseDoubleClickEvent(
     QGraphicsSceneMouseEvent *mouseEvent) {
   //   qDebug() << Q_FUNC_INFO << mouseEvent->scenePos();
-  QGraphicsItem *undercursor =
-      this->itemAt(mouseEvent->scenePos(), QTransform());
+  QGraphicsItem *undercursor = itemAt(mouseEvent->scenePos(), QTransform());
   bool ok;
   // check if we are called to modify a node
   if (undercursor != nullptr) {
@@ -262,7 +261,7 @@ void GraphicsScene::mouseDoubleClickEvent(
     QString text = d.getText();
     if (ok && !text.isEmpty()) {
       Node *node = new Node(mouseEvent->scenePos(), text);
-      this->addItem(node);
+      addItem(node);
       nodes.push_back(node);
     }
   }
@@ -292,7 +291,7 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
   // qDebug() << keyEvent->key();
   QList<QGraphicsItem *> selList;
   // make a copy of the list
-  selList.append(this->selectedItems());
+  selList.append(selectedItems());
   if (keyEvent->key() == Qt::Key_Delete ||
       keyEvent->key() == Qt::Key_Backspace) {
     if (selList.size() != 0) {
@@ -309,7 +308,6 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
           while (it != edges.end()) {
             if (nodeID == (*it)->nodeA->ID || nodeID == (*it)->nodeB->ID) {
               Edge *edge = (*it);
-              // this->removeItem(edge);
               // erase() invalidates it, using returned safe it
               it = edges.erase(it);
               delete edge;
@@ -322,7 +320,6 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
           while (nit != nodes.end()) {
             if (nodeID == (*nit)->ID) {
               Node *node = (*nit);
-              // this->removeItem(node);
               // erase() invalidates it, using returned safe it
               nit = nodes.erase(nit);
               delete node;
@@ -338,7 +335,6 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
           for (it = edges.begin(); it != edges.end(); it++) {
             if (((Edge *)item)->ID == (*it)->ID) {
               edges.erase(it);
-              // this->removeItem(item);
               delete item;
               break;
             }
@@ -355,10 +351,10 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
       Node *itemB = dynamic_cast<Node *>(selList.last());
       if (itemA->type() == ITEMNODE && itemB->type() == ITEMNODE) {
         Edge *e = new Edge(itemA, itemB, undirected);
-        this->addItem(e);
+        addItem(e);
         edges.push_back(e);
         update();
-        this->clearSelection();
+        clearSelection();
         update();
       }
     }
@@ -405,7 +401,7 @@ void GraphicsScene::print() {
     pdfwriter.setPageOrientation(QPageLayout::Landscape);
     QPainter painter(&pdfwriter);
     painter.setFont(QFont("Helvetica", 2));
-    this->render(&painter);
+    render(&painter);
     painter.end();
   }
 }

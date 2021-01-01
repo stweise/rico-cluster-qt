@@ -10,10 +10,10 @@ void GraphicsView::keyPressEvent(QKeyEvent *event) {
   switch (event->key()) {
     case Qt::Key_Space: {
       if (!event->isAutoRepeat()) {
-        if (this->dragMode() == QGraphicsView::NoDrag) {
+        if (dragMode() == QGraphicsView::NoDrag) {
           // qDebug() << "Entering drag mode";
-          this->setDragMode(QGraphicsView::ScrollHandDrag);
-          this->setInteractive(false);
+          setDragMode(QGraphicsView::ScrollHandDrag);
+          setInteractive(false);
         }
         break;
       }
@@ -29,9 +29,9 @@ void GraphicsView::keyReleaseEvent(QKeyEvent *event) {
   switch (event->key()) {
     case Qt::Key_Space: {
       if (!event->isAutoRepeat()) {
-        if (this->dragMode() == QGraphicsView::ScrollHandDrag) {
-          this->setInteractive(true);
-          this->setDragMode(QGraphicsView::NoDrag);
+        if (dragMode() == QGraphicsView::ScrollHandDrag) {
+          setInteractive(true);
+          setDragMode(QGraphicsView::NoDrag);
           // qDebug() << "Leaving drag mode";
         }
         break;
