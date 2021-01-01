@@ -15,14 +15,14 @@ QColor CategoryColor[] = {
     QColor(246, 227, 168), QColor(238, 195, 152), QColor(223, 163, 163),
 };
 
-Node::Node(QPointF center, QString label)
+Node::Node(QPointF center, QString label, int category)
     : QGraphicsItem::QGraphicsItem(nullptr) {
   QGraphicsItem::setPos(center);
   setFlag(ItemIsSelectable);
   setFlag(ItemIsMovable);
   nodelabel = label;
   setZValue(2);
-  category = 0;  // sets default category 0 and thus default color
+  this->category = category;  // sets default category 0 and thus default color
   ID = instantiationCounter;
   qDebug() << "Node Constructor ID: " << ID;
   instantiationCounter++;
@@ -50,9 +50,13 @@ Node::Node(QJsonObject json) : QGraphicsItem::QGraphicsItem(nullptr) {
     if (instantiationCounter < ID) {
       instantiationCounter = ID;
     }
+    instantiationCounter++;
+  }
+  QString categoryname = "category";
+  if (json.contains(categoryname) && json[categoryname].isDouble()) {
+    category = json[categoryname].toInt();
   }
   setZValue(2);
-  category = 0;
   qDebug() << "Node Constructor ID: " << ID;
 }
 
@@ -64,6 +68,7 @@ QJsonObject Node::returnJsonObj() {
   QJsonObject obj;
   obj.insert(QString("ID"), QJsonValue(ID));
   obj.insert(QString("nodelabel"), QJsonValue(nodelabel));
+  obj.insert(QString("category"), QJsonValue(category));
   QJsonObject center;
   center.insert(QString("x"), QJsonValue(scenePos().x()));
   center.insert(QString("y"), QJsonValue(scenePos().y()));
@@ -123,3 +128,5 @@ int Node::type() const {
   // Enable the use of qgraphicsitem_cast with this item.
   return Type;
 }
+
+QString Node::getHexFillColor() { return CategoryColor[category].name(); }

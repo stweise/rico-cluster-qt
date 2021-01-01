@@ -88,7 +88,16 @@ void GraphicsScene::load() {
       if (json.contains(nodesarrayname) && json[nodesarrayname].isArray()) {
         QJsonArray nodearray = json[nodesarrayname].toArray();
         for (int i = 0; i < nodearray.size(); ++i) {
-          Node *node = new Node(nodearray[i].toObject());
+          QJsonObject jsonnode = nodearray[i].toObject();
+          Node *node = nullptr;
+          if (version < 3) {
+            QJsonObject local = jsonnode;
+            local.insert(QString("category"), QJsonValue(0));
+            node = new Node(local);
+          }
+          if (version >= 3) {
+            node = new Node(nodearray[i].toObject());
+          }
           // qDebug() << node;
           addItem(node);
           nodes.push_back(node);
@@ -168,7 +177,7 @@ void GraphicsScene::load() {
 }
 
 void GraphicsScene::writeJsonFromScene(QJsonObject &json) {
-  json["version"] = 2;
+  json["version"] = 3;
   // create array of all the nodes
   QJsonArray nodearray;
   std::vector<Node *>::iterator nit = nodes.begin();
@@ -209,8 +218,10 @@ void GraphicsScene::exportToDot() {
       while (nit != nodes.end()) {
         QString cleanedLabel = (*nit)->nodelabel;
         cleanedLabel.replace("\n", "\\n");
-        stream << "node" << (*nit)->ID << " [label=\"" << cleanedLabel
-               << "\"];\n";
+        stream << "node" << (*nit)->ID << " [label=\"" << cleanedLabel << "\""
+               << ", style=filled, fillcolor=\"" << (*nit)->getHexFillColor()
+               << "\""
+               << "];\n";
         ++nit;
       }
 
@@ -260,7 +271,7 @@ void GraphicsScene::mouseDoubleClickEvent(
     ok = !!d.exec();
     QString text = d.getText();
     if (ok && !text.isEmpty()) {
-      Node *node = new Node(mouseEvent->scenePos(), text);
+      Node *node = new Node(mouseEvent->scenePos(), text, 0);
       addItem(node);
       nodes.push_back(node);
     }

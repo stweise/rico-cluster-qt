@@ -8,7 +8,7 @@
 
 class Node : public QGraphicsItem {
  public:
-  Node(QPointF center, QString label);
+  Node(QPointF center, QString label, int category);
   Node(QJsonObject json);
   ~Node();
 
@@ -17,6 +17,7 @@ class Node : public QGraphicsItem {
                      QWidget* widget);
   virtual int type() const;
   QJsonObject returnJsonObj();
+  QString getHexFillColor();
 
   int ID;
   QString nodelabel;
