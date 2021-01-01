@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.5
+
+* feature: nodes can be grouped into categories now, these are autocolored
+* fix: loading a cluster with many nodes created consistency errors for the next newly created node and its edges
+
+
 ## Version 1.4
 
 * feature: exports rico cluster as graphiz dot digraph file

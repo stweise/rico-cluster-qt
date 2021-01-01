@@ -8,7 +8,7 @@
         },
         {
             "ID": 1,
-            "directed": 0,
+            "directed": 1,
             "nodeA-ID": 0,
             "nodeB-ID": 1
         },
@@ -29,19 +29,33 @@
             "directed": 1,
             "nodeA-ID": 4,
             "nodeB-ID": 1
+        },
+        {
+            "ID": 5,
+            "directed": 0,
+            "nodeA-ID": 5,
+            "nodeB-ID": 1
+        },
+        {
+            "ID": 6,
+            "directed": 2,
+            "nodeA-ID": 2,
+            "nodeB-ID": 5
         }
     ],
     "nodes": [
         {
             "ID": 0,
+            "category": 1,
             "nodecenter": {
-                "x": -384,
-                "y": -167
+                "x": 29,
+                "y": -183
             },
             "nodelabel": "Node A"
         },
         {
             "ID": 1,
+            "category": 3,
             "nodecenter": {
                 "x": -110,
                 "y": -300
@@ -50,6 +64,7 @@
         },
         {
             "ID": 2,
+            "category": 1,
             "nodecenter": {
                 "x": -294,
                 "y": -403
@@ -58,6 +73,7 @@
         },
         {
             "ID": 3,
+            "category": 1,
             "nodecenter": {
                 "x": -485,
                 "y": -509
@@ -66,12 +82,22 @@
         },
         {
             "ID": 4,
+            "category": 3,
             "nodecenter": {
                 "x": -45,
                 "y": -505
             },
             "nodelabel": "Node E\nhas special size"
+        },
+        {
+            "ID": 5,
+            "category": 0,
+            "nodecenter": {
+                "x": -374,
+                "y": -200
+            },
+            "nodelabel": "Node K"
         }
     ],
-    "version": 2
+    "version": 3
 }

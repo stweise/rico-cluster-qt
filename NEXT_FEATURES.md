@@ -1,6 +1,8 @@
 # Collection of next features to implement
 
 * create preferences menu
-  * allow stylizing node labels (bold, italics, color)
-  * allow stylizing node color (fill, border)
-	* create presets, which can be overwritten
+	* allow modification of category colors
+	* allow selection of drawing method (ellipsies, rounded-rectangles)
+* create help dialog
+* create minimal handbook
+* create video showing off how to use rico-cluster-qt

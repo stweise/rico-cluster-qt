@@ -73,6 +73,7 @@ After starting the application use the following input commands:
   * edge from node A to B
 	* edge from node B to A
 	* edge without any direction arrows
+* press number 0-5 with node(s) selected: nodes are assigned into autocolored categories (0 - is default category)
 
 ## Export as dot
 

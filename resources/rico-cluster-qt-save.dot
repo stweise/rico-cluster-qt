@@ -1,12 +1,15 @@
 digraph "rico-cluster-qt-save" {
-node0 [label="Node A"];
-node1 [label="Node B"];
-node2 [label="Node C"];
-node3 [label="Node D\nThis is it"];
-node4 [label="Node E\nhas special size"];
+node0 [label="Node A", style=filled, fillcolor="#a1e0ea"];
+node1 [label="Node B", style=filled, fillcolor="#f6e3a8"];
+node2 [label="Node C", style=filled, fillcolor="#a1e0ea"];
+node3 [label="Node D\nThis is it", style=filled, fillcolor="#a1e0ea"];
+node4 [label="Node E\nhas special size", style=filled, fillcolor="#f6e3a8"];
+node5 [label="Node K", style=filled, fillcolor="#cecece"];
 node2 -> node1 [dir=none];
-node0 -> node1 [dir=none];
+node0 -> node1;
 node2 -> node3;
 node4 -> node2;
 node4 -> node1;
+node5 -> node1 [dir=none];
+node5 -> node2;
 }
