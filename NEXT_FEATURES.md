@@ -8,3 +8,4 @@
 * create video showing off how to use rico-cluster-qt
 * pan on whiteboard (using arrow keys?)
 * reset zoom to default zoom level (ctrl + 0)
+* select multiple nodes (group of nodes + interconnecting edges?) using a selection box (shift + click)
