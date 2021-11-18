@@ -1,10 +1,13 @@
 # Changelog
 
+## Version xx (not published)
+
+* feature: adds option to zoom in and out on graphs with mouse scroll and +/- keys
+
 ## Version 1.5
 
 * feature: nodes can be grouped into categories now, these are autocolored
 * fix: loading a cluster with many nodes created consistency errors for the next newly created node and its edges
-
 
 ## Version 1.4
 
@@ -20,7 +23,6 @@
 * change: ellipses are replaced as a node signifier with rounded rectangles (better use of space)
 * feature: allow multiline node labels
 
-
 ## Version 1.1
 
 * feature: old node label is now given as default text when editing a node
@@ -28,7 +30,6 @@
 * feature: whiteboard is now auto-expanding
 * feature: added "Save as" menu item
 * feature: "Save" and "Save as" dialogs work as known from other applications
-
 
 ## Version 1.0
 

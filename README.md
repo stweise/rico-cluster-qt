@@ -100,7 +100,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-2020 Steffen Weise
+2020-2021 Steffen Weise
 
 ## Notice
 
