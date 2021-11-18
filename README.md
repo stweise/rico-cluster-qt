@@ -69,7 +69,7 @@ After starting the application use the following input commands:
 * "delete"/"backspace"-key: deletes edge/node under current selection
 * select and drag for nodes is supported (extendable by selection)
 * "a"-key while an edge is selected: adds an arrow, repeated pressing of "a" cycles through:
-  * edge from node A to B
+    * edge from node A to B
 	* edge from node B to A
 	* edge without any direction arrows
 * "0" "1" ... "5"-key with node(s) selected: nodes are assigned into autocolored categories (0 - is default category)
