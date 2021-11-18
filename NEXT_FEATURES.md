@@ -6,3 +6,5 @@
 * create help dialog
 * create minimal handbook
 * create video showing off how to use rico-cluster-qt
+* pan on whiteboard (using arrow keys?)
+* reset zoom to default zoom level (ctrl + 0)

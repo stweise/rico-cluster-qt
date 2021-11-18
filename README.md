@@ -58,22 +58,27 @@ Project > Open Project > Import the CMakeLists.txt > Build
 
 After starting the application use the following input commands:
 
+### Edit
 * double-click on empty space: create a new node
   * node label dialog supports multiple lines and fast entry (Ctrl-Enter/Return) or (COMMAND-Return) for "Ok"
 * double-click on a node: update node label (old text is default for new label)
 * single-click on a node: selects node
-* (Windows & Linux) CTRL-click on a node or edge: toggles selection on node or edge
-* (Mac) COMMAND-click on a node or edge: toggles selection on node or edge
+* (Windows & Linux) "ctrl"+mouse left click on a node or edge: toggles selection on node or edge
+* (Mac) "cmd"+mouse left click on a node or edge: toggles selection on node or edge
 * "e"-key + two selected nodes: nodes are connected by an edge 
-* DELETE/BACKSPACE: deletes edge/node under current selection
-* drag and drop is supported (extendable by selection)
-* drawing area (canvas) is extending, when objects are moved towards the edge
-* "space" + mouse drag: pan on whiteboard
-* pressing "A"-key while an edge is selected adds an arrow, repeated pressing of "A" cycles through:
+* "delete"/"backspace"-key: deletes edge/node under current selection
+* select and drag for nodes is supported (extendable by selection)
+* "a"-key while an edge is selected: adds an arrow, repeated pressing of "a" cycles through:
   * edge from node A to B
 	* edge from node B to A
 	* edge without any direction arrows
-* press number 0-5 with node(s) selected: nodes are assigned into autocolored categories (0 - is default category)
+* "0" "1" ... "5"-key with node(s) selected: nodes are assigned into autocolored categories (0 - is default category)
+
+### View/Zoom
+* "space" + mouse drag: pan on whiteboard
+* "ctrl" + "+"/"-"-keys zooms in/out on graph
+* "ctrl" + mouse scroll wheel zooms in/out on graph
+* drawing area (canvas) is extending, when objects are moved towards the edge
 
 ## Export as dot
 

@@ -12,6 +12,7 @@ class GraphicsView : public QGraphicsView {
 
   void keyPressEvent(QKeyEvent *event);
   void keyReleaseEvent(QKeyEvent *event);
+  void wheelEvent(QWheelEvent *event);
 
  signals:
 };
