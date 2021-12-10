@@ -13,13 +13,21 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+
+# Set some Windows Specific settings
 IF(WIN32)
-SET(GUI_TYPE WIN32)
+	SET(GUI_TYPE WIN32)
 ENDIF(WIN32)
+
 # Set some Apple MacOS Specific settings
 IF (APPLE)
-SET(GUI_TYPE MACOSX_BUNDLE)
+	SET(GUI_TYPE MACOSX_BUNDLE)
 ENDIF (APPLE)
+
+# Default to Release builds
+if (NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
+endif()
 
 add_executable(rico-cluster-qt ${GUI_TYPE}
     main.cpp

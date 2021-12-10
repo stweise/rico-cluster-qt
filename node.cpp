@@ -1,11 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 #include "node.h"
 
-#include <QApplication>
-#include <QFontMetrics>
-#include <QJsonObject>
-#include <QString>
-
 static int instantiationCounter = 0;
 int nodeDrawingStyle = 2;  // 1 - ellipse, 2 - rectangle
 
@@ -24,7 +19,9 @@ Node::Node(QPointF center, QString label, int category)
   setZValue(2);
   this->category = category;  // sets default category 0 and thus default color
   ID = instantiationCounter;
+#ifndef NDEBUG
   qDebug() << "Node Constructor ID: " << ID;
+#endif
   instantiationCounter++;
 }
 
@@ -57,11 +54,15 @@ Node::Node(QJsonObject json) : QGraphicsItem::QGraphicsItem(nullptr) {
     category = json[categoryname].toInt();
   }
   setZValue(2);
+#ifndef NDEBUG
   qDebug() << "Node Constructor ID: " << ID;
+#endif
 }
 
 Node::~Node() {
+#ifndef NDEBUG
   qDebug() << "Node Destructor ID: " << ID;
+#endif
   // QGraphicsItem::~QGraphicsItem();
 }
 QJsonObject Node::returnJsonObj() {

@@ -1,10 +1,17 @@
 // SPDX-License-Identifier: BSD-3-Clause
 #ifndef NODE_H
 #define NODE_H
+
+#include <QApplication>
+#ifndef NDEBUG
 #include <QDebug>
+#endif
+#include <QFontMetrics>
 #include <QGraphicsItem>
+#include <QJsonObject>
 #include <QPainter>
 #include <QPointF>
+#include <QString>
 
 class Node : public QGraphicsItem {
  public:

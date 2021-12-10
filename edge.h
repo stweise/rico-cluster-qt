@@ -1,8 +1,12 @@
 // SPDX-License-Identifier: BSD-3-Clause
 #ifndef EDGE_H
 #define EDGE_H
+
+#ifndef NDEBUG
 #include <QDebug>
+#endif
 #include <QGraphicsItem>
+#include <QJsonObject>
 #include <QPainter>
 #include <QPointF>
 

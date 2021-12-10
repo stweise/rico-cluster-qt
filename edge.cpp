@@ -2,11 +2,11 @@
 #include "edge.h"
 
 // use math Windows?
+#ifdef _WIN32
+#define _USE_MATH_DEFINES
+#endif
 #include <math.h>
 
-#include <QDebug>
-#include <QJsonObject>
-#include <QPointF>
 static int instantionID = 0;
 Edge::Edge(Node *npA, Node *npB, directedSelection dir) {
   if (npA->ID != npB->ID) {
@@ -15,14 +15,18 @@ Edge::Edge(Node *npA, Node *npB, directedSelection dir) {
     ID = instantionID;
     instantionID++;
     setFlag(ItemIsSelectable);
+#ifndef NDEBUG
     qDebug() << "Edge Constructor ID: " << ID << "From: " << nodeA->ID << " - "
              << nodeB->ID;
+#endif
     directed = dir;
   }
 }
 
 Edge::~Edge() {
+#ifndef NDEBUG
   qDebug() << "Edge Destructor ID: " << ID;
+#endif
   // QGraphicsItem::~QGraphicsItem();
 }
 

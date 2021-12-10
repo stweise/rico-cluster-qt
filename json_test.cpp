@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: BSD-3-Clause
 #include <QCoreApplication>
+#include <QDebug>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QTextStream>
-#include <QtDebug>
 
 void read(const QJsonObject &json);
 void write(QJsonObject &json);

@@ -1,24 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 #include "graphicsscene.h"
 
-#include <QDir>
-#include <QFile>
-#include <QFileDialog>
-#include <QFileInfo>
-#include <QInputDialog>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QLineEdit>
-#include <QLineF>
-#include <QMessageBox>
-#include <QPdfWriter>
-#include <QtDebug>
-
-#include "edge.h"
-#include "inputdialog.h"
-#include "node.h"
-
 enum CustomItemType { ITEMNODE = 65537, ITEMEDGE = 65538 };
 
 GraphicsScene::GraphicsScene(QObject *parent)
@@ -307,7 +289,9 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
   if (key == Qt::Key_Delete || key == Qt::Key_Backspace) {
     if (selList.size() != 0) {
       for (int i = 0; i < selList.size(); i++) {
+#ifndef NDEBUG
         qDebug() << "i: " << i << " size: " << selList.size();
+#endif
         QGraphicsItem *item = selList[i];
         int itemtype = item->type();
         // If it is a node

@@ -1,13 +1,19 @@
 #include "graphicsview.h"
 
-#include <QtDebug>
-
 #define ZOOMINFACTOR 1.1
 #define ZOOMOUTFACTOR 0.90909
 
 GraphicsView::GraphicsView(QWidget *parent)
     : QGraphicsView::QGraphicsView(parent) {
   // qDebug() << "Hello from GraphicsView";
+  QAction *zoomInAction = new QAction(this);
+  zoomInAction->setShortcuts(QKeySequence::ZoomIn);
+  connect(zoomInAction, &QAction::triggered, this, &GraphicsView::zoomIn);
+  this->addAction(zoomInAction);
+  QAction *zoomOutAction = new QAction(this);
+  zoomOutAction->setShortcuts(QKeySequence::ZoomOut);
+  connect(zoomOutAction, &QAction::triggered, this, &GraphicsView::zoomOut);
+  this->addAction(zoomOutAction);
 }
 void GraphicsView::wheelEvent(QWheelEvent *event) {
   if (event->modifiers() == Qt::ControlModifier) {
@@ -37,24 +43,16 @@ void GraphicsView::keyPressEvent(QKeyEvent *event) {
         break;
       }
     }
-    case Qt::Key_Plus: {
-      if (event->modifiers() == Qt::ControlModifier) {
-        scale(ZOOMINFACTOR, ZOOMINFACTOR);
-        break;
-      }
-    }
-    case Qt::Key_Minus: {
-      if (event->modifiers() == Qt::ControlModifier) {
-        scale(ZOOMOUTFACTOR, ZOOMOUTFACTOR);
-        break;
-      }
-    }
     default: {
       QGraphicsView::keyPressEvent(event);
       break;
     }
   }
 }
+
+void GraphicsView::zoomIn() { scale(ZOOMINFACTOR, ZOOMINFACTOR); }
+
+void GraphicsView::zoomOut() { scale(ZOOMOUTFACTOR, ZOOMOUTFACTOR); }
 
 void GraphicsView::keyReleaseEvent(QKeyEvent *event) {
   switch (event->key()) {

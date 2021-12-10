@@ -3,18 +3,34 @@
 #define GRAPHICSSCENE_H
 
 #include <QBrush>
+#include <vector>
+#ifndef NDEBUG
 #include <QDebug>
+#endif
+#include <QDir>
+#include <QFile>
+#include <QFileDialog>
+#include <QFileInfo>
 #include <QGraphicsEllipseItem>
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsTextItem>
+#include <QInputDialog>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QKeyEvent>
+#include <QLineEdit>
+#include <QLineF>
+#include <QMessageBox>
 #include <QMouseEvent>
+#include <QPdfWriter>
 #include <QPen>
 #include <QPointF>
-#include <vector>
+#include <QTextStream>
 
 #include "edge.h"
+#include "inputdialog.h"
 #include "node.h"
 
 #ifndef SAVEFILEDESC

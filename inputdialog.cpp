@@ -1,11 +1,5 @@
 #include "inputdialog.h"
 
-#include <QDialog>
-#include <QDialogButtonBox>
-#include <QKeyEvent>
-#include <QPlainTextEdit>
-#include <QVBoxLayout>
-#include <QtDebug>
 InputDialog::InputDialog(QWidget *parent, QString dialogLabel,
                          QString defaultText)
     : QDialog::QDialog(parent) {

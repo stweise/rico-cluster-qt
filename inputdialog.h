@@ -1,10 +1,15 @@
 #ifndef INPUTDIALOG_H
 #define INPUTDIALOG_H
 
+#ifndef NDEBUG
+#include <QDebug>
+#endif
 #include <QDialog>
 #include <QDialogButtonBox>
+#include <QKeyEvent>
 #include <QLabel>
 #include <QPlainTextEdit>
+#include <QVBoxLayout>
 #include <QWidget>
 
 class InputDialog : public QDialog {
