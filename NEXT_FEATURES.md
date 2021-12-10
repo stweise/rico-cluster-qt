@@ -9,3 +9,4 @@
 * pan on whiteboard (using arrow keys?)
 * reset zoom to default zoom level (ctrl + 0)
 * select multiple nodes (group of nodes + interconnecting edges?) using a selection box (shift + click)
+* add edge arrow drawing mode where there is an arrow on A and B (AandB)
