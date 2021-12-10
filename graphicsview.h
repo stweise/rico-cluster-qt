@@ -9,6 +9,8 @@
 #include <QKeyEvent>
 #include <QKeySequence>
 #include <QObject>
+#include <QPainterPath>
+#include <QRubberBand>
 
 class GraphicsView : public QGraphicsView {
   Q_OBJECT
@@ -18,6 +20,14 @@ class GraphicsView : public QGraphicsView {
   void keyPressEvent(QKeyEvent *event);
   void keyReleaseEvent(QKeyEvent *event);
   void wheelEvent(QWheelEvent *event);
+  void mousePressEvent(QMouseEvent *event);
+  void mouseMoveEvent(QMouseEvent *event);
+  void mouseReleaseEvent(QMouseEvent *event);
+
+ private:
+  QRubberBand *rubberBand;
+  bool rubberBandSelectionStarted;
+  QPoint origin;
 
  public slots:
   void zoomIn();
