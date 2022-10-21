@@ -4,6 +4,7 @@
 
 #include <QApplication>
 #include <QMainWindow>
+#include <QDebug>
 
 #include "graphicsscene.h"
 
@@ -32,7 +33,9 @@ class MainWindow : public QMainWindow {
 
   void on_actionExport_triggered();
 
- private:
+  void on_actionHow_to_use_triggered();
+
+private:
   Ui::MainWindow *ui;
   GraphicsScene *scene;
 };

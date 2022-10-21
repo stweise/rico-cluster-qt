@@ -22,3 +22,13 @@ void MainWindow::on_actionPrint_triggered() { scene->print(); }
 void MainWindow::on_actionSave_as_triggered() { scene->saveAs(); }
 
 void MainWindow::on_actionExport_triggered() { scene->exportToDot(); }
+
+
+
+void MainWindow::on_actionHow_to_use_triggered()
+{
+
+    // let us do nothing right now;
+    qDebug() << "the section how to use it was triggered";
+}
+
