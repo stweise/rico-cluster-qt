@@ -22,6 +22,9 @@ ENDIF(WIN32)
 # Set some Apple MacOS Specific settings
 IF (APPLE)
 	SET(GUI_TYPE MACOSX_BUNDLE)
+    set(MACOSX_BUNDLE_ICON_FILE rico.icns)
+    set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/icon/rico.icns")
+    set_source_files_properties(${app_icon_macos} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 ENDIF (APPLE)
 
 # Default to Release builds
@@ -44,6 +47,7 @@ add_executable(rico-cluster-qt ${GUI_TYPE}
     node.cpp
     edge.h
     edge.cpp
+    ${app_icon_macos}
     )
 
 target_link_libraries(rico-cluster-qt PRIVATE Qt5::Widgets)
