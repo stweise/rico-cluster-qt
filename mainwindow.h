@@ -35,6 +35,8 @@ class MainWindow : public QMainWindow {
 
   void on_actionHow_to_use_triggered();
 
+  void on_actionAbout_triggered();
+
 private:
   Ui::MainWindow *ui;
   GraphicsScene *scene;

@@ -32,3 +32,10 @@ void MainWindow::on_actionHow_to_use_triggered()
     qDebug() << "the section how to use it was triggered";
 }
 
+
+void MainWindow::on_actionAbout_triggered()
+{
+    // This dialog is automatically moved to that "About application" section in osx menu bar
+    qDebug() << "this shows the about dialog";
+}
+
