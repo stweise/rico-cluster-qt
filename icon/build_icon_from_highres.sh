@@ -13,3 +13,8 @@ sips -z 512 512   ${original} --out ${dest}/icon_512x512.png
 cp ${original} ${dest}/icon_512x512@2x.png
 iconutil -c icns ${dest}
 rm -R ${dest}
+
+## Notes for Icons
+# https://gist.github.com/jamieweavis/b4c394607641e1280d447deed5fc85fc
+# https://stackoverflow.com/questions/12306223/how-to-manually-create-icns-files-using-iconutil
+# https://doc.qt.io/qt-6/appicon.html
