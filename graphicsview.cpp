@@ -60,7 +60,7 @@ void GraphicsView::keyPressEvent(QKeyEvent *event) {
     }
     case Qt::Key_0: {  // CMD/Control + 0 resets zoom to fit everything
       if (event->modifiers() == Qt::ControlModifier) {
-        qDebug() << "Fitting all content into window";
+        // qDebug() << "Fitting all content into window";
         fitInView(scene()->sceneRect(), Qt::KeepAspectRatio);
       }
     }
