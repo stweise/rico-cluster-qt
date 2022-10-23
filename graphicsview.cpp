@@ -32,13 +32,11 @@ void GraphicsView::wheelEvent(QWheelEvent *event) {
     // makes sure to zoom under mouse position
     setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
     int angle = event->angleDelta().y();
-    qreal factor;
     if (angle > 0) {
-      factor = ZOOMINFACTOR;
+      zoomIn();
     } else {
-      factor = ZOOMOUTFACTOR;
+      zoomOut();
     }
-    scale(factor, factor);
     // reset transformation anchor to old anchor
     setTransformationAnchor(anchor);
   } else {
