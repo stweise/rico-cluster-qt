@@ -360,31 +360,33 @@ void GraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
     if (selList.size() != 0) {
       for (int i = 0; i < selList.size(); i++) {
         Node *item = dynamic_cast<Node *>(selList[i]);
-        if (item->type() == ITEMNODE) {
-          int c;
-          switch (key) {
-            case Qt::Key_0:
-              c = 0;
-              break;
-            case Qt::Key_1:
-              c = 1;
-              break;
-            case Qt::Key_2:
-              c = 2;
-              break;
-            case Qt::Key_3:
-              c = 3;
-              break;
-            case Qt::Key_4:
-              c = 4;
-              break;
-            case Qt::Key_5:
-              c = 5;
-              break;
-            default:
-              c = 0;
+        if (item != nullptr) {
+          if (item->type() == ITEMNODE) {
+            int c;
+            switch (key) {
+              case Qt::Key_0:
+                c = 0;
+                break;
+              case Qt::Key_1:
+                c = 1;
+                break;
+              case Qt::Key_2:
+                c = 2;
+                break;
+              case Qt::Key_3:
+                c = 3;
+                break;
+              case Qt::Key_4:
+                c = 4;
+                break;
+              case Qt::Key_5:
+                c = 5;
+                break;
+              default:
+                c = 0;
+            }
+            item->category = c;
           }
-          item->category = c;
         }
       }
       clearSelection();

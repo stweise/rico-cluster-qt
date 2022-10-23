@@ -3,8 +3,8 @@
 #define MAINWINDOW_H
 
 #include <QApplication>
-#include <QMainWindow>
 #include <QDebug>
+#include <QMainWindow>
 
 #include "graphicsscene.h"
 
@@ -37,7 +37,7 @@ class MainWindow : public QMainWindow {
 
   void on_actionAbout_triggered();
 
-private:
+ private:
   Ui::MainWindow *ui;
   GraphicsScene *scene;
 };
