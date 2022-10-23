@@ -76,9 +76,10 @@ After starting the application use the following input commands:
 * "0" "1" ... "5"-key with node(s) selected: nodes are assigned into autocolored categories (0 - is default category)
 
 ### View/Zoom
-* "space" + mouse drag: pan on whiteboard
+* "space" + mouse drag: pan on whiteboard (does not pan into empty space yet)
 * "ctrl" + "+"/"-"-keys zooms in/out on graph
 * "ctrl" + mouse scroll wheel zooms in/out on graph
+* "ctrl" + "0"-key fits everything on whiteboard into window
 * drawing area (canvas) is extending, when objects are moved towards the edge
 
 ## Export as dot
