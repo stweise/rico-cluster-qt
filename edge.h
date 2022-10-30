@@ -9,6 +9,7 @@
 #include <QJsonObject>
 #include <QPainter>
 #include <QPointF>
+#include <QPalette>
 
 #include "node.h"
 

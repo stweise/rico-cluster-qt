@@ -45,7 +45,9 @@ QRectF Edge::boundingRect() const {
 
 void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                  QWidget *widget) {
-  QPen pen(Qt::black);
+  // make edges recognizable in dark mode
+  QColor edgecolor = QPalette().color(QPalette::Text);
+  QPen pen(edgecolor);
   if (QGraphicsItem::isSelected()) {
     pen.setColor(QColor(238, 54, 54));  // use red color to signify selection
   }
@@ -121,7 +123,7 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     QPolygonF poly2 = t.map(poly);
     pen.setWidth(1);
     painter->setPen(pen);
-    painter->setBrush(Qt::black);
+    painter->setBrush(edgecolor);
     painter->drawPolygon(poly2, Qt::WindingFill);
   }
 }

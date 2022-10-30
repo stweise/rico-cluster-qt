@@ -12,7 +12,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Gui)
 
 # Set some Windows Specific settings
 IF(WIN32)
@@ -50,4 +50,4 @@ add_executable(rico-cluster-qt ${GUI_TYPE}
     ${app_icon_macos}
     )
 
-target_link_libraries(rico-cluster-qt PRIVATE Qt6::Widgets)
+target_link_libraries(rico-cluster-qt PRIVATE Qt6::Widgets Qt6::Gui)
