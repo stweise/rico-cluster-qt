@@ -6,6 +6,7 @@
 #define _USE_MATH_DEFINES
 #endif
 #include <math.h>
+#include "QPaintEngine"
 
 static int instantionID = 0;
 Edge::Edge(Node *npA, Node *npB, directedSelection dir) {
@@ -45,8 +46,11 @@ QRectF Edge::boundingRect() const {
 
 void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                  QWidget *widget) {
-  // make edges recognizable in dark mode
-  QColor edgecolor = QPalette().color(QPalette::Text);
+  QColor edgecolor = Qt::black;
+  if (QPaintEngine::Pdf != painter->paintEngine()->type() ) {
+    // make edges recognizable in dark mode, but not when drawing to a pdf
+    edgecolor = QPalette().color(QPalette::Text);
+  }
   QPen pen(edgecolor);
   if (QGraphicsItem::isSelected()) {
     pen.setColor(QColor(238, 54, 54));  // use red color to signify selection
