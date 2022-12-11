@@ -1,8 +1,13 @@
 # Changelog
 
-## Version xx (not published)
+## Version 1.6
 
-* feature: adds option to zoom in and out on graphs with mouse scroll and +/- keys
+* feature: adds graph zooming and fit to window
+* feature: adds edge arrows
+* feature: adds selection box
+* feature: adds app icon on Mac OS X
+* feature: adds "help" (which finally explains all commands and interactions) and "about" dialog
+* feature: adds light edges in dark mode for increased visibility
 
 ## Version 1.5
 
