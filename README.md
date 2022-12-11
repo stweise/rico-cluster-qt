@@ -14,7 +14,11 @@ rico-cluster-qt is a QT based applications that allows simple and fast creation 
 
 ### Installation on Mac OS X
 
-Open the released DMG file for Mac OS X and simple copy the included Application in your "Applications" folder.
+The build currently shipped in releases is for M1+ new arm64 Macs only.
+
+Open the released DMG file for Mac OS X and simple copy the included Application in your "Applications" folder. If you get errors about "damages or corrupted file" please try to reset the extended attributes on the application set by Mac OS X like this: 
+
+        xattr -cr /Applications/rico-cluster-qt.app
 
 ### Installation on Windows
 
@@ -102,13 +106,12 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-2020-2021 Steffen Weise
+2020-2022 Steffen Weise
 
 ## Notice
 
 This project uses the following tools/libraries:
 
-* Qt Open Source Edition [QT5.15](https://qt.io) please also see: [license details QT](https://doc.qt.io/qt-5/licenses-used-in-qt.html)
+* Qt Open Source Edition [QT6.4](https://qt.io) please also see: [license details QT](https://doc.qt.io/qt-6/licenses-used-in-qt.html)
 * Microsoft Visual Studio 2019 [MSVS2019](https://visualstudio.microsoft.com/)
 * Apple Xcode [Xcode](https://developer.apple.com/xcode/)
-* Fedora 31 [Fed31](https://getfedora.org)
