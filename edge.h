@@ -10,6 +10,7 @@
 #include <QPainter>
 #include <QPointF>
 #include <QPalette>
+#include "QPaintEngine"
 
 #include "node.h"
 
